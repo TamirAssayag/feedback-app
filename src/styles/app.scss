@@ -1,0 +1,33 @@
+@import "./vuetify_overrides.scss";
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600&display=swap");
+@import "./mixins.scss";
+@import "./colors.scss";
+
+html,
+body {
+  font-family: "Jost", sans-serif;
+}
+
+.v-application {
+  font-family: "Jost", sans-serif !important;
+  background-color: $light-bg !important;
+}
+
+.card {
+  min-height: 178px;
+  width: 223px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.feedback__wrapper {
+  padding: 32px 24px;
+}
+
+h1,
+h2,
+h3 {
+  color: $dark_blue;
+}

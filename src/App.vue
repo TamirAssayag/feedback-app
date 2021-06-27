@@ -1,32 +1,42 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <v-app>
+    <Layout v-model="isMenuOpen" />
+    <Drawer v-model="isMenuOpen" />
+    <div class="feedback__wrapper">
+      <router-view />
     </div>
-    <router-view />
-  </div>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import "./styles/app.scss";
+import { mapActions } from "vuex";
+import data from "@/json/data.json";
+import Layout from "./components/Layout/Layout.vue";
+import Drawer from "./components/Drawer/Drawer.vue";
+export default {
+  components: { Layout, Drawer },
+  name: "App",
 
-#nav {
-  padding: 30px;
-}
+  methods: {
+    ...mapActions({
+      setFeedbacks: "feedbacks/setFeedbacks",
+    }),
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
+  },
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  data: () => ({
+    isMenuOpen: false,
+  }),
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  created() {
+    if (localStorage.getItem("feedbacks")) {
+      this.setFeedbacks(JSON.parse(localStorage.getItem("feedbacks")));
+    } else {
+      this.setFeedbacks(data.productRequests);
+    }
+  },
+};
+</script>

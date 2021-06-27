@@ -1,0 +1,56 @@
+@import "./colors.scss";
+
+.v-btn {
+  &--plain:not(.v-btn--active):not(.v-btn--loading):not(:focus):not(:hover)
+    .v-btn__content {
+    opacity: 1 !important;
+  }
+}
+
+.v-application p {
+  margin: 0 !important;
+}
+
+.v-application ul,
+.v-application ol {
+  padding: 0 !important;
+  list-style: none;
+}
+
+.v-text-field.v-text-field--solo:not(.v-text-field--solo-flat)
+  > .v-input__control
+  > .v-input__slot {
+  box-shadow: unset !important;
+  padding: unset !important;
+  font-size: 13px;
+}
+
+.v-menu__content {
+  border-radius: 1rem !important;
+  box-shadow: 0 10px 40px -7px rgba(55, 63, 104, 0.35) !important;
+  z-index: 6 !important;
+
+  .v-list {
+    padding: 0 !important;
+    overflow: hidden !important;
+    &-item {
+      min-width: 200px;
+
+      span {
+        color: $text_primary;
+        font-size: 1rem;
+        transition: 0.3s all ease;
+        &:hover {
+          color: $purple !important;
+        }
+      }
+
+      &::before {
+        content: "";
+        opacity: 0.15 !important;
+        height: 1px !important;
+        background-color: #3a4374 !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+.sort_by {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  font-size: 13px;
+  gap: 0.5rem;
+
+  &__dropdown {
+    border-radius: 1rem !important;
+  }
+
+  .mdi-chevron-down {
+    font-size: 18px !important;
+  }
+}
+
+.ui-button__sort {
+  &.transition {
+    transition: transform 0.3s ease !important;
+  }
+}
+
+.mdi-chevron-down {
+  &.rotate {
+    transform: rotate(-180deg) !important;
+  }
+}

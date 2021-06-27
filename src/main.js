@@ -2,11 +2,24 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import vuetify from "./plugins/vuetify";
+import { Fragment } from "vue-fragment";
+import InlineSvg from "vue-inline-svg";
+// Mixins
+import getImageUrl from "./mixins/getImageUrl";
+import AppMixin from "./mixins/AppMixin";
+
+Vue.mixin(getImageUrl);
+Vue.mixin(AppMixin);
+
+Vue.component("Fragment", Fragment);
+Vue.component("InlineSvg", InlineSvg);
 
 Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
+  vuetify,
   render: (h) => h(App),
 }).$mount("#app");

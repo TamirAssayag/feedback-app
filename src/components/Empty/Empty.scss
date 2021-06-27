@@ -1,0 +1,29 @@
+@import "@/styles/colors.scss";
+
+.empty {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.125rem;
+    background-color: white;
+    height: 460px;
+  }
+
+  svg {
+    margin-bottom: 39px;
+  }
+
+  &__title {
+    font-size: 18px;
+  }
+
+  &__text {
+    color: $text_primary;
+    text-align: center;
+    padding: 14px 0;
+    font-size: 13px;
+    padding: 0.8rem 1rem 1.5rem;
+  }
+}
