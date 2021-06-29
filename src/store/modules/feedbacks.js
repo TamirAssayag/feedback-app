@@ -72,7 +72,7 @@ const getters = {
   feedbackByCategory: (state) => {
     const filterByCategory = state.feedbacks.filter((feedback) => {
       if (state.filter === "all") return feedback;
-      return feedback.category === state.filter;
+      return feedback.category.toLowerCase() === state.filter.toLowerCase();
     });
 
     if (state.sortBy === "most_upvotes") {

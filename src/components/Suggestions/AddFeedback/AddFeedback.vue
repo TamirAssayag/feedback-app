@@ -45,7 +45,7 @@
               attach
               append-icon="mdi-chevron-down"
               :menu-props="{
-                transition: 'scroll-x-transition',
+                transition: 'scroll-y-transition',
                 top: false,
                 offsetY: true,
               }"
@@ -106,7 +106,28 @@ export default {
 
   data: () => ({
     mixins: [validationMixin],
-    selectOptions: ["UI", "UX", "Enhancement", "Bug", "Feature"],
+    selectOptions: [
+      {
+        text: "UI",
+        value: "UI",
+      },
+      {
+        text: "UX",
+        value: "UX",
+      },
+      {
+        text: "Enhancement",
+        value: "enhancement",
+      },
+      {
+        text: "Bug",
+        value: "bug",
+      },
+      {
+        text: "Feature",
+        value: "feature",
+      },
+    ],
     newFeedback: {
       id: null,
       title: null,
