@@ -9,88 +9,10 @@
   &__secondary {
     color: $blue !important;
     background-color: $light-bg !important;
-
-    &:active,
-    &:hover {
-      color: #f2f4fe !important;
-      background-color: $blue-hover !important;
-    }
   }
 
-  &__chip {
-    cursor: auto;
-    color: $blue !important;
-    background-color: $light-bg !important;
-    width: fit-content !important;
-    font-weight: bold !important;
-    font-size: 13px !important;
-    transform: none !important;
-  }
-
-  &__upvote {
-    font-weight: bold !important;
-    color: $dark_blue;
-    background-color: $light-bg !important;
-    transform: none !important;
-
-    &:active,
-    &:hover {
-      background-color: $light-blue !important;
-    }
-  }
-
-  &__upvoted {
-    font-weight: bold !important;
-    color: white !important;
-    background-color: $blue !important;
-    transform: none !important;
-
-    svg {
-      path {
-        stroke: white !important;
-      }
-    }
-  }
-
-  &__comments {
-    font-weight: bold !important;
-    color: $dark_blue;
+  &__transparent {
+    color: currentColor !important;
     background-color: transparent !important;
-    transform: none !important;
-  }
-
-  &__comments_empty {
-    font-weight: bold !important;
-    color: #949cc4 !important;
-    background-color: transparent !important;
-    transform: none !important;
-  }
-
-  &__purple {
-    font-weight: 500 !important;
-    color: white !important;
-    background-color: $purple !important;
-    padding: 1.3rem 1rem !important;
-
-    &:hover,
-    &:active {
-      background-color: #c75af6 !important;
-    }
-  }
-
-  &__sort {
-    text-transform: capitalize;
-    letter-spacing: normal;
-    font-weight: 500 !important;
-    color: white !important;
-    background-color: transparent !important;
-    padding: 0 !important;
-
-    .v-btn__content {
-      padding: 0 !important;
-      display: flex !important;
-      align-items: center !important;
-      gap: 0.5rem;
-    }
   }
 }

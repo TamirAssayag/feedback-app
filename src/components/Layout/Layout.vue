@@ -1,5 +1,6 @@
 <template>
   <Navbar
+    v-if="$route.name !== 'add_feedback'"
     color="gradient mobile"
     hide-back
     sticky-extension
@@ -28,9 +29,11 @@
       <div class="extention_bar">
         <div class="sort_by">
           <span class="text_extention"> Sort By: </span>
-          <sort-by />
+          <SortBy />
         </div>
-        <UIButton color="purple"> + Add Feedback </UIButton>
+        <UIButton uistyle="feedback" @click="$router.push('/add')">
+          + Add Feedback
+        </UIButton>
       </div>
     </template>
   </Navbar>
@@ -93,5 +96,9 @@ export default {
   justify-content: space-between;
   padding: 0 1.5rem;
   color: white !important;
+
+  .ui-button__feedback {
+    margin: 0;
+  }
 }
 </style>

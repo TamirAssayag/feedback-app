@@ -5,12 +5,16 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import { Fragment } from "vue-fragment";
 import InlineSvg from "vue-inline-svg";
+import Vuelidate from "vuelidate";
+
 // Mixins
 import getImageUrl from "./mixins/getImageUrl";
 import AppMixin from "./mixins/AppMixin";
 
 Vue.mixin(getImageUrl);
 Vue.mixin(AppMixin);
+
+Vue.use(Vuelidate);
 
 Vue.component("Fragment", Fragment);
 Vue.component("InlineSvg", InlineSvg);

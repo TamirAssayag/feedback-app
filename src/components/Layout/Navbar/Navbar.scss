@@ -18,10 +18,10 @@ $white: #fff;
       background-image: url("./../../../assets/suggestions/mobile/background-header.png");
     }
     &.tablet {
-      background-image: url("./../../../assets/suggestions/mobile/background-header.png");
+      background-image: url("./../../../assets/suggestions/tablet/background-header.png");
     }
-    &.dekstop {
-      background-image: url("./../../../assets/suggestions/mobile/background-header.png");
+    &.desktop {
+      background-image: url("./../../../assets/suggestions/desktop/background-header.png");
     }
   }
   &--sticky {
@@ -101,7 +101,7 @@ $white: #fff;
     }
     &--back {
       svg {
-        transform: translateX(0.5rem);
+        transform: translateX(0.2rem);
       }
     }
     &--with-slot {

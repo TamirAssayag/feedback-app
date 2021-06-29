@@ -1,26 +1,70 @@
 <template>
-  <div class="card">
+  <div class="filter card">
     <UIButton
       :elevation="0"
-      v-for="button in buttons"
-      :key="button"
-      :color="button === selected ? 'primary' : 'secondary'"
-      @click="selected = button"
+      v-for="value in Object.keys(buttons)"
+      :key="value"
+      :color="value === selected ? 'primary' : 'secondary'"
+      :title="value | capitalize"
+      :aria-label="value | capitalize"
+      @click="selectCategory(value)"
     >
-      {{ button }}
+      {{ value }}
     </UIButton>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import UIButton from "../../Layout/UI/UIButton.vue";
 export default {
   components: { UIButton },
   data: () => ({
-    buttons: ["All", "UI", "UX", "Enhancement", "Bug", "Feature"],
-    selected: "All",
+    buttons: {
+      all: false,
+      ui: false,
+      ux: false,
+      enhancement: false,
+      bug: false,
+      feature: false,
+    },
+    selected: "all",
   }),
+
+  methods: {
+    ...mapActions({
+      filter: "feedbacks/updateFilter",
+    }),
+
+    selectCategory(value) {
+      this.selected = value;
+      this.filter(value);
+    },
+  },
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "@/styles/colors.scss";
+.filter {
+  .ui-button {
+    &__primary {
+      &:nth-of-type(2),
+      &:nth-of-type(3) {
+        text-transform: uppercase !important;
+      }
+    }
+    &__secondary {
+      &:nth-of-type(2),
+      &:nth-of-type(3) {
+        text-transform: uppercase !important;
+      }
+      &:active,
+      &:hover {
+        color: #f2f4fe !important;
+        background-color: $blue-hover !important;
+      }
+    }
+  }
+}
+</style>

@@ -8,6 +8,10 @@
     margin-top: 0;
   }
 
+  &:nth-last-of-type(1) {
+    margin-bottom: 0;
+  }
+
   .ui-button {
     margin: 0;
   }

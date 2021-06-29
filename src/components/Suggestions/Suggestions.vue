@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cards">
     <template v-for="feed in feedbacks">
       <div class="card suggestions" :key="feed.id" v-if="feedbacks.length">
         <span class="suggestions__title">
@@ -10,13 +10,13 @@
           {{ feed.description }}
         </div>
 
-        <UIButton color="chip" :elevation="0">
+        <UIButton color="secondary" uistyle="chip" :elevation="0">
           {{ feed.category }}
         </UIButton>
 
         <div class="suggestions__bottom--wrapper">
           <UIButton
-            :color="feed.hasUserUpVoted ? 'upvoted' : 'upvote'"
+            :uistyle="feed.hasUserUpVoted ? 'upvoted' : 'upvote'"
             :elevation="0"
             class="suggestions__btn"
             @click="upVoteFeedbackById(feed.id)"
@@ -28,7 +28,8 @@
           </UIButton>
 
           <UIButton
-            :color="feed.comments ? 'comments' : 'comments_empty'"
+            :uistyle="feed.comments ? 'comments' : 'comments_empty'"
+            color="transparent"
             :elevation="0"
             class="suggestions__btn"
           >
@@ -45,7 +46,7 @@
 
 <script>
 import "./Suggestions.scss";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import UIButton from "../Layout/UI/UIButton.vue";
 export default {
   components: { UIButton },
@@ -53,11 +54,6 @@ export default {
 
   data: () => ({}),
 
-  computed: {
-    ...mapGetters({
-      feedbacks: "feedbacks/getFeedbacks",
-    }),
-  },
   methods: {
     ...mapActions({
       upVoteFeedbackById: "feedbacks/upVoteFeedbackById",

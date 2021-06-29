@@ -1,69 +1,68 @@
 <template>
-  <div>
-    <v-menu
-      bottom
-      offset-y
-      :close-on-content-click="true"
-      transition="scroll-y-transition"
+  <div class="sort_by">
+    <v-select
+      class="sort_by__select"
+      :items="items"
+      height="38px"
+      dense
+      filled
+      hide-details
       attach
-      v-model="rotate"
+      v-model="selected"
+      @input="
+        () => {
+          sortBy(selected);
+        }
+      "
+      append-icon="mdi-chevron-down"
       :menu-props="{
+        contentClass: 'sort_by__transparent',
+        transition: 'scroll-y-transition',
         top: false,
         offsetY: true,
       }"
+      background-color="transparent"
     >
-      <v-list class="sort_by__dropdown">
-        <v-list-item
-          v-for="item in items"
-          :key="item"
-          link
-          dense
-          @click="selected = item"
-        >
-          <span> {{ item }}</span>
-        </v-list-item>
-      </v-list>
-
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          :ripple="false"
-          :elevation="0"
-          :bind="attrs"
-          v-on="on"
-          title="Sort By"
-          aria-label="Sort By"
-          class="ui-button__sort"
-          @click="toggleIconRotation"
-        >
-          {{ selected }}
-          <v-icon
-            :class="[
-              rotate ? 'mdi-chevron-down rotate' : 'ui-button__sort transition',
-            ]"
-          >
-            mdi-chevron-down
-          </v-icon>
-        </v-btn>
-      </template>
-    </v-menu>
+    </v-select>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import "./SortBy.scss";
 export default {
   name: "SortBy",
-  data: () => ({
-    selected: "Most Upvotes",
-    items: ["Most Upvotes", "Least Upvotes", "Most Comments", "Least Comments"],
-    rotate: false,
-  }),
 
   methods: {
-    toggleIconRotation() {
-      this.rotate = !this.rotate;
-    },
+    ...mapActions({
+      sortBy: "feedbacks/updateSort",
+    }),
   },
+
+  data: () => ({
+    selected: "most_upvotes",
+    items: [
+      {
+        text: "Most Upvotes",
+        value: "most_upvotes",
+      },
+
+      {
+        text: "Least Upvotes",
+        value: "least_upvotes",
+      },
+
+      {
+        text: "Most Comments",
+        value: "most_comments",
+      },
+
+      {
+        text: "Least Comments",
+        value: "least_comments",
+      },
+    ],
+  }),
 };
 </script>
 
