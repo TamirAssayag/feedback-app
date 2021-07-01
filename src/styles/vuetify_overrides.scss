@@ -7,8 +7,10 @@
   }
 }
 
-.v-application p {
-  margin: 0 !important;
+.v-application {
+  &p {
+    margin: 0 !important;
+  }
 }
 
 .v-application ul,
@@ -156,5 +158,65 @@
 .v-messages {
   &__message {
     font-size: 11px !important;
+  }
+}
+.v-expansion-panel {
+  border-radius: 1rem !important;
+  background-color: $lighter-bg !important;
+
+  &::before {
+    box-shadow: none !important;
+  }
+
+  &-header {
+    padding: 0 !important;
+    max-height: 0 !important;
+    min-height: 10px !important;
+  }
+
+  &-content {
+    padding: 0.3rem 0 !important;
+
+    textarea {
+      &::placeholder {
+        font-size: 13px;
+        color: $text_primary !important ;
+        opacity: 0.5;
+      }
+      color: $text_primary !important;
+    }
+
+    &__wrap {
+      position: relative !important;
+      width: 100%;
+      box-shadow: none !important;
+      padding: 0 !important;
+      overflow: hidden;
+
+      .send_reply {
+        position: absolute !important;
+        bottom: 0;
+        right: 0;
+        color: $blue !important;
+        cursor: pointer;
+        height: 50px;
+        width: 50px;
+        transition: all 0.3s ease !important;
+
+        .v-input.v-textarea {
+          color: $text_primary !important;
+        }
+
+        &:active,
+        &:hover {
+          transform: scale(1.1);
+          color: $purple !important;
+        }
+      }
+
+      .v-input--is-focused {
+        border: 1px solid transparent !important;
+      }
+    }
   }
 }

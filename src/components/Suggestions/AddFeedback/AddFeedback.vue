@@ -135,6 +135,7 @@ export default {
       upvotes: 0,
       status: "suggestion",
       description: null,
+      comments: [],
     },
   }),
 
@@ -154,7 +155,7 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) return;
       this.addFeedback(this.newFeedback);
-      this.$router.push("/");
+      return this.$router.push("/");
     },
   },
 

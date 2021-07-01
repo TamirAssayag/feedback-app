@@ -21,6 +21,7 @@ export default {
   methods: {
     ...mapActions({
       setFeedbacks: "feedbacks/setFeedbacks",
+      setCurrentUser: "feedbacks/setCurrentUser",
     }),
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
@@ -36,6 +37,12 @@ export default {
       this.setFeedbacks(JSON.parse(localStorage.getItem("feedbacks")));
     } else {
       this.setFeedbacks(data.productRequests);
+    }
+
+    if (localStorage.getItem("currentUser")) {
+      this.setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
+    } else {
+      this.setCurrentUser(data.currentUser);
     }
   },
 };

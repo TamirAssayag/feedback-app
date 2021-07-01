@@ -1,0 +1,87 @@
+@import "@/styles/colors.scss";
+.ui-button {
+  &__edit_feedback {
+    padding: 1.25rem 1.1669rem !important;
+    font-size: 13px !important;
+    margin: 0 !important;
+  }
+}
+.feedback__comments {
+  width: 100%;
+
+  &__header {
+    margin-bottom: 1rem;
+  }
+}
+
+.comment {
+  &__content {
+    padding: 1rem 0 !important;
+    color: $text-primary;
+    font-size: 13px;
+    margin: 0 !important;
+  }
+
+  &__delete {
+    display: flex;
+    width: 100%;
+    padding: 1rem 0 0.5rem;
+
+    .ui-button {
+      margin-right: 0;
+      margin-left: auto;
+      padding: 0 !important;
+
+      .v-btn__content {
+        margin-left: 2rem !important;
+      }
+
+      .mdi-delete {
+        font-size: 20px;
+        color: $text-primary;
+        opacity: 0.5;
+        transition: all 0.2s ease;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  hr {
+    opacity: 0.1;
+    background-color: #8c92b3;
+    margin: 0 auto 1.6rem;
+  }
+}
+
+.replies {
+  padding-left: 23px;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    height: 95%;
+    width: 1px;
+    opacity: 0.1;
+    background-color: #647196;
+    top: 0;
+    left: 0;
+  }
+
+  &__wrapper {
+    font-size: 13px;
+    color: $text_primary;
+
+    &__content {
+      padding: 1rem 0 26px !important;
+
+      .replying_to {
+        color: $purple;
+        font-weight: bold;
+      }
+    }
+  }
+}

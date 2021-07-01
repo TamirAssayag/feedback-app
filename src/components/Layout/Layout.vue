@@ -1,6 +1,6 @@
 <template>
   <Navbar
-    v-if="$route.name !== 'add_feedback'"
+    v-if="routeMatches"
     color="gradient mobile"
     hide-back
     sticky-extension
@@ -61,6 +61,9 @@ export default {
       return !this.isMenuOpen
         ? "shared/mobile/icon-hamburger.svg"
         : "shared/mobile/icon-close.svg";
+    },
+    routeMatches() {
+      return this.$route.name !== "add_feedback" && this.$route.name !== "id";
     },
   },
 };

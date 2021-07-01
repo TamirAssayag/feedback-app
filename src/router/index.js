@@ -1,30 +1,43 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import AddFeedback from "@/components/Suggestions/AddFeedback/AddFeedback.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Suggestions",
+    component: () =>
+      import(
+        /* webpackChunkName: "Suggestions" */ "@/components/Suggestions/Suggestions.vue"
+      ),
   },
+
+  {
+    path: "/feedback",
+    name: "feedback",
+    component: () =>
+      import(
+        /* webpackChunkName: "Feedback" */ "@/views/Feedback/Feedback.vue"
+      ),
+    children: [
+      {
+        path: ":id",
+        name: "id",
+        children: [],
+      },
+    ],
+  },
+
   {
     path: "/add",
     name: "add_feedback",
-    component: AddFeedback,
+    component: () =>
+      import(
+        /* webpackChunkName: "AddFeedback" */ "@/components/Suggestions/AddFeedback/AddFeedback.vue"
+      ),
   },
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  // },
+
   {
     path: "*",
     component: () =>
