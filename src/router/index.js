@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Roadmap from ".././views/Roadmap/Roadmap.vue";
 
 Vue.use(VueRouter);
 
@@ -11,31 +12,48 @@ const routes = [
       import(
         /* webpackChunkName: "Suggestions" */ "@/components/Suggestions/Suggestions.vue"
       ),
-  },
-
-  {
-    path: "/feedback",
-    name: "feedback",
-    component: () =>
-      import(
-        /* webpackChunkName: "Feedback" */ "@/views/Feedback/Feedback.vue"
-      ),
     children: [
       {
-        path: ":id",
-        name: "id",
-        children: [],
+        path: "/add",
+        name: "new_fb",
+        component: () =>
+          import(
+            /* webpackChunkName: "AddFeedback" */ "@/components/Suggestions/AddFeedback/AddFeedback.vue"
+          ),
       },
     ],
   },
 
   {
-    path: "/add",
-    name: "add_feedback",
-    component: () =>
-      import(
-        /* webpackChunkName: "AddFeedback" */ "@/components/Suggestions/AddFeedback/AddFeedback.vue"
-      ),
+    path: "/roadmap",
+    name: "roadmap",
+    component: Roadmap,
+  },
+
+  {
+    path: "/feedback",
+    name: "feedback",
+    component: { template: `<router-view />` },
+    children: [
+      {
+        path: ":id",
+        name: "id",
+        component: () =>
+          import(
+            /* webpackChunkName: "Feedback" */ "@/views/Feedback/Feedback.vue"
+          ),
+        children: [
+          {
+            path: "edit",
+            name: "edit_fb",
+            component: () =>
+              import(
+                /* webpackChunkName: "AddFeedback" */ "@/components/Suggestions/AddFeedback/AddFeedback.vue"
+              ),
+          },
+        ],
+      },
+    ],
   },
 
   {

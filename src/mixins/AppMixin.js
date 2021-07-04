@@ -14,6 +14,17 @@ export default {
     goBack() {
       return this.$router.go(-1);
     },
+    goHome() {
+      if (!this.isOpen) return;
+      this.isOpen = false;
+      setTimeout(() => this.$router.go(-1), 160);
+    },
+    displayStatusAmount(roadmap) {
+      return this.getStatus(roadmap.toLowerCase()).length;
+    },
+    statusByName(roadmap) {
+      return this.getStatus(roadmap.toLowerCase());
+    },
   },
 
   computed: {
@@ -22,6 +33,7 @@ export default {
       getFeedbackById: "feedbacks/getFeedbackById",
       getFeedbackCommentsById: "feedbacks/getFeedbackCommentsById",
       user: "feedbacks/user",
+      getStatus: "feedbacks/getStatus",
     }),
     feedback() {
       return this.getFeedbackById(Number(this.$route.params.id));

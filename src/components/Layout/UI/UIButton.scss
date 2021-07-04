@@ -89,4 +89,15 @@
       background-color: #656ea3 !important;
     }
   }
+
+  &__delete {
+    color: white !important;
+    background-color: $red !important;
+    padding: 1.3rem 1rem !important;
+
+    &:hover,
+    &:active {
+      background-color: #e98888 !important;
+    }
+  }
 }

@@ -1,90 +1,41 @@
 <template>
-  <section v-if="feedback">
-    <div :class="`feedback_${feedback.status}`">
-      <router-view />
-
-      <Navbar :maxHeight="36" notSticky @onBack="goBack()">
+  <section>
+    <router-view />
+    <div v-if="feedback" :class="`container feedback_${feedback.status}`">
+      <Navbar :maxHeight="36" notSticky @onBack="goBack">
         <template v-slot:action>
-          <UIButton class="ui-button__edit_feedback"> Edit Feedback </UIButton>
+          <UIButton class="ui-button__edit_feedback" @click="editFeedback">
+            Edit Feedback
+          </UIButton>
         </template>
       </Navbar>
-
       <FeedbackCard
         class="mt-6"
-        :title="feedback.title"
-        :description="feedback.description"
-        :category="feedback.category"
-        :upvotes="feedback.upvotes"
-        :allComments="feedback.comments"
-        :commentsLength="feedback.totalComments"
-        :userVoted="feedback.hasUserUpVoted"
+        :feed="feedback"
         @onVote="upVoteFeedbackById(feedback.id)"
       />
-
-      <section class="card feedback__comments">
-        <header class="feedback__comments__header">
+      <section class="card comments">
+        <header class="comments__header">
           <h3>{{ feedback.totalComments }} Comments</h3>
         </header>
-        <v-scroll-y-reverse-transition
+        <div
+          class="comments__wrapper"
           v-for="(comment, i) in comments"
           :key="comment.id + i"
         >
-          <div class="comment" v-if="comments">
-            <User
-              :image="comment.user.image"
-              :name="comment.user.name"
-              :username="comment.user.username"
-              @onReply="handleCommentExpansion(i)"
-            />
+          <Comment :data="comment" />
 
-            <p class="comment__content">
-              {{ comment.content }}
-            </p>
-
-            <ReplyExpension
-              :username="comment.user.username"
-              :value="isShown"
-            />
-
-            <div class="comment__delete">
-              <UIButton
-                v-if="comment.user === user"
-                :color="'transparent'"
-                :elevation="0"
-                @click="
-                  deleteComment({
-                    feedbackId: $route.params.id,
-                    id: comment.id,
-                  })
-                "
-              >
-                <v-icon>mdi mdi-delete</v-icon>
-              </UIButton>
+          <div class="replies" v-if="comment.replies">
+            <div
+              class="replies__wrapper"
+              v-for="reply in comment.replies"
+              :key="reply.content"
+            >
+              <Replies :data="reply" />
             </div>
-
-            <div class="replies" v-if="comment.replies">
-              <div
-                class="replies__wrapper"
-                v-for="reply in comment.replies"
-                :key="reply.content"
-              >
-                <User
-                  :image="reply.user.image"
-                  :name="reply.user.name"
-                  :username="reply.user.username"
-                />
-
-                <div class="replies__wrapper__content">
-                  <span class="replying_to">@{{ reply.replyingTo }}</span>
-                  <span class="replies__wrapper__content__text"></span>
-                  {{ reply.content }}
-                </div>
-              </div>
-            </div>
-
-            <v-divider v-if="i !== comments.length - 1" />
           </div>
-        </v-scroll-y-reverse-transition>
+          <v-divider class="mb-5" v-if="i !== comments.length - 1" />
+        </div>
       </section>
       <AddComment @onSubmit="handleSubmit" />
     </div>
@@ -96,26 +47,24 @@ import "./Feedback.scss";
 import FeedbackCard from "@/components/Layout/FeedbackCard/FeedbackCard.vue";
 import Navbar from "@/components/Layout/Navbar/Navbar.vue";
 import UIButton from "@/components/Layout/UI/UIButton.vue";
-import User from "@/components/Comments/User.vue";
 import AddComment from "@/components/Comments/AddComment.vue";
 import { mapActions, mapGetters } from "vuex";
-import ReplyExpension from "../../components/Comments/ReplyExpension.vue";
+import Comment from "../../components/Comments/Comment.vue";
+import Replies from "../../components/Comments/Replies.vue";
 
 export default {
   components: {
     FeedbackCard,
     Navbar,
     UIButton,
-    User,
     AddComment,
-    ReplyExpension,
+    Comment,
+    Replies,
   },
   name: "Feedback",
 
   data: () => ({
     content: null,
-    isShown: null,
-    force: null,
   }),
 
   computed: {
@@ -127,17 +76,17 @@ export default {
   methods: {
     ...mapActions({
       addComment: "feedbacks/addComment",
-      deleteComment: "feedbacks/deleteComment",
     }),
+
+    editFeedback() {
+      this.$router.push({ name: "edit_fb" }).catch((err) => console.log(err));
+    },
 
     handleSubmit(param) {
       this.addComment({
         id: this.$route.params.id,
         comment: param,
       });
-    },
-    handleCommentExpansion(index) {
-      this.isShown = index;
     },
   },
 };

@@ -1,6 +1,14 @@
 <template>
   <section class="suggestions__view">
     <router-view />
+    <v-fade-transition appear>
+      <v-overlay
+        z-index="55"
+        color="white"
+        :opacity="1"
+        v-if="$route.name === 'new_fb'"
+      />
+    </v-fade-transition>
     <SuggestionsList v-if="feedbacks.length" />
     <Empty v-else />
   </section>

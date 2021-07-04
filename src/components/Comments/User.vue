@@ -1,5 +1,5 @@
 <template>
-  <div class="feedback__comments__user">
+  <div class="user">
     <v-img
       :src="getImageUrl(`${image}`)"
       max-height="40"
@@ -9,10 +9,10 @@
       :title="`${username}`"
     />
     <ul>
-      <li class="feedback__comments__user-name">
+      <li class="user__name">
         {{ name }}
       </li>
-      <li class="feedback__comments__username">@{{ username }}</li>
+      <li class="user__username">@{{ username }}</li>
     </ul>
     <span class="reply" @click="$emit('onReply')">Reply</span>
   </div>
@@ -31,30 +31,30 @@ export default {
 
 <style lang="scss">
 @import "@/styles/colors.scss";
-.feedback__comments {
-  &__user {
-    display: flex;
-    align-items: center;
-    .v-image {
-      border-radius: 50%;
-    }
 
-    ul {
-      margin-left: 1rem;
-    }
+.user {
+  display: flex;
+  align-items: center;
 
-    &-name {
-      font-size: 13px;
-      font-weight: bold;
-      color: $dark_blue;
-      letter-spacing: -0.18px;
-    }
+  &__name {
+    font-size: 13px;
+    font-weight: bold;
+    color: $dark_blue;
+    letter-spacing: -0.18px;
   }
 
   &__username {
     font-size: 13px;
     color: $text_primary;
     letter-spacing: -0.18px;
+  }
+
+  .v-image {
+    border-radius: 50%;
+  }
+
+  ul {
+    margin-left: 1rem;
   }
 
   .reply {

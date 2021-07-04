@@ -6,6 +6,7 @@ import vuetify from "./plugins/vuetify";
 import { Fragment } from "vue-fragment";
 import InlineSvg from "vue-inline-svg";
 import Vuelidate from "vuelidate";
+import PortalVue from "portal-vue";
 
 // Mixins
 import getImageUrl from "./mixins/getImageUrl";
@@ -15,6 +16,7 @@ Vue.mixin(getImageUrl);
 Vue.mixin(AppMixin);
 
 Vue.use(Vuelidate);
+Vue.use(PortalVue);
 
 Vue.component("Fragment", Fragment);
 Vue.component("InlineSvg", InlineSvg);

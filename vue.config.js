@@ -1,3 +1,4 @@
 module.exports = {
-  transpileDependencies: ["vuetify, vuesax"],
+  runtimeCompiler: true,
+  transpileDependencies: ["vuetify"],
 };

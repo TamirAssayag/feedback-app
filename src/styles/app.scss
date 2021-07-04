@@ -8,9 +8,16 @@ body {
   font-family: "Jost", sans-serif;
 }
 
+.modal-open {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  max-height: 100vh;
+}
+
 .v-application {
   font-family: "Jost", sans-serif !important;
-  background-color: $light-bg !important;
+  background: $light-bg !important;
+  transition: all 0.2s ease !important;
 }
 
 .card {
@@ -18,11 +25,66 @@ body {
   width: 223px;
   background-color: white;
   border-radius: 10px;
-  padding: 1.5rem;
   margin: 1.5rem 0;
+  padding: 1.5rem;
 }
 
-.feedback__wrapper {
+.fb__card {
+  min-height: 178px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+
+  &:first-child {
+    margin: 0 0 1.5rem;
+  }
+
+  .tab_color,
+  .roadmap__status__indicator {
+    height: 6px;
+
+    &.planned {
+      background-color: #f49f85;
+    }
+
+    &.in-progress {
+      background-color: $purple;
+    }
+
+    &.live {
+      background-color: #62bcfa;
+    }
+
+    .status_elipse {
+      font-size: 13px;
+      color: $text_primary;
+      padding-left: 1.5rem;
+    }
+  }
+
+  .roadmap__status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1rem;
+
+    &__indicator {
+      height: 8px;
+      width: 8px;
+      border-radius: 3rem;
+    }
+
+    &__text {
+      font-size: 13px;
+      color: $text_primary;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.container {
   padding: 32px 24px;
 }
 

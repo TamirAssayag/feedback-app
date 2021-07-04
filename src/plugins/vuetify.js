@@ -15,6 +15,7 @@ export default new Vuetify({
         success: "#4CAF50",
         warning: "#FFC107",
         input: "#f7f8fd",
+        dark_blue: "#3a4374",
       },
     },
   },

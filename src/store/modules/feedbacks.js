@@ -9,9 +9,18 @@ const state = {
 
 const mutations = {
   setFeedbacks(state, payload) {
-    payload.map((fb) => {
-      if (!fb.comments) fb.comments = [];
-    });
+    // Setting by default missing data arrays such as comments and replies for efficiency.
+    const getComments = payload
+      .map((fb) => {
+        if (!fb.comments) fb.comments = [];
+        return fb.comments;
+      })
+      .map((comment) => {
+        comment.forEach((comm) => {
+          if (!comm.replies) comm.replies = [];
+        });
+        return getComments;
+      });
     state.feedbacks = payload;
   },
   setCurrentUser(state, payload) {
@@ -32,12 +41,23 @@ const mutations = {
 
     state.feedbacks[identifier].hasUserUpVoted = !hasUserUpVoted ? true : false;
   },
+
   addFeedback(state, data) {
     const lastItemInArray = state.feedbacks[state.feedbacks.length - 1];
     const id = lastItemInArray?.id ? lastItemInArray.id + 1 : 1;
     data = { ...data, id: id };
     state.feedbacks.push(data);
   },
+
+  deleteFeedback(state, id) {
+    state.feedbacks = state.feedbacks.filter((fb) => fb.id !== Number(id));
+  },
+
+  saveFeedbackById(state, { id, data }) {
+    const identifier = state.feedbacks.findIndex((i) => i.id === Number(id));
+    state.feedbacks[identifier] = data;
+  },
+
   addComment(state, { id, comment }) {
     const identifier = state.feedbacks.findIndex((i) => i.id === Number(id));
     if (state.feedbacks[identifier]?.comments) {
@@ -52,7 +72,44 @@ const mutations = {
         user: state.currentUser,
       });
     }
+
+    const setDefaultRepliesArray = state.feedbacks[identifier].comments.forEach(
+      (comm) => {
+        if (!comm.replies) comm.replies = [];
+      }
+    );
+    return setDefaultRepliesArray;
   },
+
+  addReply(state, { id, reply }) {
+    const identifier = state.feedbacks.findIndex((i) => i.id === Number(id));
+
+    console.log(identifier);
+
+    let comments = state.feedbacks[identifier]?.comments.map((comment) => {
+      if (comment) return comment;
+    });
+
+    let allReplies = comments.map((fb) => {
+      if (fb?.replies) return fb?.replies;
+    });
+
+    let allUsernames = comments.map((fb) => {
+      return fb.user.username;
+    });
+
+    const replyItself = allReplies.filter((r, i) => {
+      if (r)
+        return r.push({
+          content: reply,
+          replyingTo: allUsernames[i],
+          user: state.currentUser,
+        });
+    });
+
+    console.log(replyItself);
+  },
+
   deleteComment(state, { feedbackId, id }) {
     const identifier = state.feedbacks.findIndex(
       (i) => i.id === Number(feedbackId)
@@ -93,8 +150,20 @@ const actions = {
     commit("addFeedback", data);
     saveFeedbackToLocalStorage();
   },
+  deleteFeedback({ commit }, id) {
+    commit("deleteFeedback", id);
+    saveFeedbackToLocalStorage();
+  },
+  saveFeedbackById({ commit }, { data, id }) {
+    commit("saveFeedbackById", { data, id });
+    saveFeedbackToLocalStorage();
+  },
   addComment({ commit }, { id, comment }) {
     commit("addComment", { id, comment });
+    saveFeedbackToLocalStorage();
+  },
+  addReply({ commit }, { id, reply }) {
+    commit("addReply", { id, reply });
     saveFeedbackToLocalStorage();
   },
   deleteComment({ commit }, { feedbackId, id }) {
@@ -152,11 +221,26 @@ const getters = {
       return getters.feedbacks.find((feedback) => feedback.id === id);
     };
   },
+  getFeedbacksByStatus(state, getters) {
+    return (status) => {
+      return getters.feedbacks.filter((feedback) => feedback.status === status);
+    };
+  },
   getFeedbackCommentsById(state, getters) {
     return (id) => {
       const identifier = getters.feedbacks.findIndex((i) => i.id === id);
       const comments = getters.feedbacks[identifier].comments;
       if (comments) return comments.map((comment) => comment);
+    };
+  },
+  getStatus(state, getters) {
+    return (roadmap) => {
+      return getters.feedbacks
+        .map((fb) => fb.status)
+        .filter((status) => {
+          if (status === "suggestion") return;
+          return status === roadmap;
+        });
     };
   },
 };

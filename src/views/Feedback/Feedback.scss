@@ -6,15 +6,20 @@
     margin: 0 !important;
   }
 }
-.feedback__comments {
+.comments {
   width: 100%;
 
   &__header {
     margin-bottom: 1rem;
   }
+
+  &__wrapper {
+    margin: 0rem 0 1.6rem;
+  }
 }
 
 .comment {
+  margin-bottom: 1rem;
   &__content {
     padding: 1rem 0 !important;
     color: $text-primary;
@@ -25,7 +30,6 @@
   &__delete {
     display: flex;
     width: 100%;
-    padding: 1rem 0 0.5rem;
 
     .ui-button {
       margin-right: 0;
@@ -74,9 +78,10 @@
   &__wrapper {
     font-size: 13px;
     color: $text_primary;
+    padding-bottom: 26px;
 
     &__content {
-      padding: 1rem 0 26px !important;
+      padding: 1rem 0 !important;
 
       .replying_to {
         color: $purple;

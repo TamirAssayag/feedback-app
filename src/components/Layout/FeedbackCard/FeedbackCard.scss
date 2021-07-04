@@ -8,11 +8,8 @@
 
 .suggestions {
   min-height: 200px;
-  width: 100%;
+  padding: 1.5rem;
 
-  &:nth-of-type(1) {
-    margin-top: 0;
-  }
   .ui-button {
     margin: 0;
   }

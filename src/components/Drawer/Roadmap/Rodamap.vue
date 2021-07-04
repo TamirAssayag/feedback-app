@@ -2,7 +2,7 @@
   <div class="card roadmap">
     <header class="roadmap__card-header">
       <h3>Roadmap</h3>
-      <span class="view_link">View</span>
+      <span class="view_link" @click="$router.push('/roadmap')">View</span>
     </header>
 
     <div class="roadmap__card__content">
@@ -10,13 +10,15 @@
         <li
           class="roadmap__list__item"
           v-for="(roadmap, index) in roadmaps"
-          :key="index"
+          :key="roadmap + index"
         >
           <div class="roadmap__indicator"></div>
           <span class="roadmap__name">
             {{ roadmap }}
           </span>
-          <span class="roadmap__amount">{{ index }}</span>
+          <span class="roadmap__amount">{{
+            displayStatusAmount(roadmap)
+          }}</span>
         </li>
       </ul>
     </div>
@@ -29,6 +31,8 @@ export default {
   data: () => ({
     roadmaps: ["Planned", "In-Progress", "Live"],
   }),
+
+  computed: {},
 };
 </script>
 

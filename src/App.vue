@@ -2,9 +2,7 @@
   <v-app>
     <Layout v-model="isMenuOpen" />
     <Drawer v-model="isMenuOpen" />
-    <div class="feedback__wrapper">
-      <router-view />
-    </div>
+    <router-view />
   </v-app>
 </template>
 
@@ -32,7 +30,7 @@ export default {
     isMenuOpen: false,
   }),
 
-  created() {
+  mounted() {
     if (localStorage.getItem("feedbacks")) {
       this.setFeedbacks(JSON.parse(localStorage.getItem("feedbacks")));
     } else {
