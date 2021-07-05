@@ -210,3 +210,19 @@
     min-height: 100vh;
   }
 }
+
+.v-text-field__slot {
+  label,
+  ::placeholder {
+    font-size: 13px;
+    color: $text_primary !important ;
+    opacity: 0.5;
+    margin: 0 !important;
+  }
+
+  textarea {
+    margin-top: 0.5rem;
+    min-height: 100px !important;
+    color: $text_primary !important;
+  }
+}

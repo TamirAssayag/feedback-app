@@ -1,34 +1,36 @@
 <template>
   <div>
-    <User
-      :image="data.user.image"
-      :name="data.user.name"
-      :username="data.user.username"
-      @onReply="handleExpansion"
-    />
+    <div class="replies__wrapper">
+      <User
+        :image="data.user.image"
+        :name="data.user.name"
+        :username="data.user.username"
+        @onReply="handleExpansion"
+      />
 
-    <div class="replies__wrapper__content">
-      <span class="replying_to">@{{ data.replyingTo }}</span>
-      <span class="replies__wrapper__content__text"></span>
-      {{ data.content }}
+      <div class="replies__wrapper__content">
+        <span class="replying_to">@{{ data.replyingTo }}</span>
+        <span class="replies__wrapper__content__text"></span>
+        {{ data.content }}
+      </div>
+
+      <div class="trash__delete">
+        <UIButton
+          v-if="data.user.username === user.username"
+          :color="'transparent'"
+          :elevation="0"
+          @click="$emit('onDelete')"
+        >
+          <v-icon>mdi mdi-delete</v-icon>
+        </UIButton>
+      </div>
+
+      <ReplyExpansion
+        :username="data.user.username"
+        :value="replyShown"
+        @click="handleReply"
+      />
     </div>
-
-    <div class="trash__delete">
-      <UIButton
-        v-if="data.user.username === user.username"
-        :color="'transparent'"
-        :elevation="0"
-        @click="$emit('onDelete')"
-      >
-        <v-icon>mdi mdi-delete</v-icon>
-      </UIButton>
-    </div>
-
-    <ReplyExpansion
-      :username="data.user.username"
-      :value="replyShown"
-      @click="handleReply"
-    />
   </div>
 </template>
 

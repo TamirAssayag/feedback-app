@@ -40,5 +40,25 @@ export default {
       }
       return errors;
     },
+    replyErrors() {
+      const errors = [];
+      const $v = this.$v.content;
+      if (!$v.$dirty) {
+        return errors;
+      } else {
+        !$v.required && errors.push("");
+      }
+      return errors;
+    },
+    commentErrors() {
+      const errors = [];
+      const $v = this.$v.content;
+      if (!$v.$dirty) {
+        return errors;
+      } else {
+        !$v.required && errors.push("");
+      }
+      return errors;
+    },
   },
 };

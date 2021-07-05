@@ -20,33 +20,31 @@
         </header>
 
         <v-expand-transition
+          appear
           v-for="(comment, i) in comments"
           :key="comment.id + i"
         >
           <div class="comments__wrapper">
             <Comment :data="comment" />
 
-            {{ comment.replies }}
-
             <div class="replies" v-if="comment.replies">
-              <div
+              <v-expand-transition
+                appear
                 v-for="(reply, index) in comment.replies"
                 :key="reply.replyingTo + index"
               >
-                <div class="replies__wrapper">
-                  <Replies
-                    :data="reply"
-                    :commentId="comment.id"
-                    @onDelete="
-                      deleteReply({
-                        feedbackId: $route.params.id,
-                        commentId: comment.id,
-                        index: index,
-                      })
-                    "
-                  />
-                </div>
-              </div>
+                <Replies
+                  :data="reply"
+                  :commentId="comment.id"
+                  @onDelete="
+                    deleteReply({
+                      feedbackId: $route.params.id,
+                      commentId: comment.id,
+                      index: index,
+                    })
+                  "
+                />
+              </v-expand-transition>
             </div>
             <v-divider class="mb-5" v-if="i !== comments.length - 1" />
           </div>
@@ -93,10 +91,6 @@ export default {
       addComment: "feedbacks/addComment",
       deleteReply: "feedbacks/deleteReply",
     }),
-
-    handleDeleteReply(reply, index) {
-      reply.splice(index, 1);
-    },
 
     editFeedback() {
       this.$router.push({ name: "edit_fb" }).catch((err) => console.log(err));

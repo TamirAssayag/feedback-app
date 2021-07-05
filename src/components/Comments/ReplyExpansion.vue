@@ -1,5 +1,5 @@
 <template>
-  <v-scroll-y-transition appear>
+  <v-scroll-y-transition appear hide-on-leave>
     <div class="reply__expansion" v-if="value">
       <v-textarea
         height="150px"
@@ -7,6 +7,9 @@
         no-resize
         :label="`Replying to @${username}`"
         v-model="content"
+        :error-messages="replyErrors"
+        @focus="$v.content.$reset()"
+        @blur="$v.content.$touch()"
       >
       </v-textarea>
       <div class="send">
@@ -19,8 +22,17 @@
 </template>
 
 <script>
+import { validationMixin } from "vuelidate";
+import { required } from "vuelidate/lib/validators";
+import FormValidations from "@/mixins/FormValidations";
+
 export default {
   data: () => ({ content: null, id: null }),
+  mixins: [validationMixin, FormValidations],
+
+  validations: {
+    content: { required },
+  },
 
   props: {
     username: String,
@@ -29,6 +41,8 @@ export default {
 
   methods: {
     submit() {
+      this.$v.$touch();
+      if (this.$v.$invalid) return;
       this.$emit("click", this.content);
       this.content = "";
     },
@@ -45,18 +59,9 @@ export default {
   background-color: $lighter-bg !important;
   padding: 0.2rem 1rem;
 
-  .v-text-field__slot {
-    label {
-      font-size: 13px;
-      color: $text_primary !important ;
-      opacity: 0.5;
-      margin: 0 !important;
-    }
-
-    textarea {
-      margin-top: 0.5rem;
-      min-height: 100px !important;
-      color: $text_primary !important;
+  .v-input {
+    &--has-state {
+      border: 1px solid transparent !important;
     }
   }
 
@@ -71,8 +76,13 @@ export default {
     transition: all 0.3s ease !important;
     margin-bottom: 0.5rem;
 
-    .v-input.v-textarea {
-      color: $text_primary !important;
+    .v-input {
+      &.v-textarea {
+        color: $text_primary !important;
+      }
+      &--has-state {
+        border: 1px solid transparent !important;
+      }
     }
 
     &:active,
