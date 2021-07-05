@@ -65,8 +65,10 @@ export default {
 
     handleReply(content) {
       this.addReply({
-        id: this.$route.params.id,
         reply: content,
+        commentId: this.data.id,
+        id: this.$route.params.id,
+        replyingTo: this.data.user.username,
       });
       this.hasReplyTextArea = false;
     },

@@ -81,33 +81,30 @@ const mutations = {
     return setDefaultRepliesArray;
   },
 
-  addReply(state, { id, reply }) {
+  addReply(state, { id, reply, replyingTo, commentId }) {
     const identifier = state.feedbacks.findIndex((i) => i.id === Number(id));
+    const commentIdentifier = state.feedbacks[identifier].comments.findIndex(
+      (i) => i.id === Number(commentId)
+    );
 
-    console.log(identifier);
+    const { comments } = state.feedbacks[identifier];
+    if (!comments.length) return;
 
-    let comments = state.feedbacks[identifier]?.comments.map((comment) => {
-      if (comment) return comment;
-    });
-
-    let allReplies = comments.map((fb) => {
-      if (fb?.replies) return fb?.replies;
-    });
-
-    let allUsernames = comments.map((fb) => {
-      return fb.user.username;
-    });
-
-    const replyItself = allReplies.filter((r, i) => {
-      if (r)
-        return r.push({
+    if (Array.isArray(comments?.replies)) {
+      state.feedbacks[identifier].comments[commentIdentifier].replies.push({
+        content: reply,
+        replyingTo,
+        user: state.currentUser,
+      });
+    } else {
+      state.feedbacks[identifier].comments[commentIdentifier].replies = [
+        {
           content: reply,
-          replyingTo: allUsernames[i],
+          replyingTo,
           user: state.currentUser,
-        });
-    });
-
-    console.log(replyItself);
+        },
+      ];
+    }
   },
 
   deleteComment(state, { feedbackId, id }) {
@@ -162,8 +159,8 @@ const actions = {
     commit("addComment", { id, comment });
     saveFeedbackToLocalStorage();
   },
-  addReply({ commit }, { id, reply }) {
-    commit("addReply", { id, reply });
+  addReply({ commit }, { id, reply, replyingTo, commentId }) {
+    commit("addReply", { id, reply, replyingTo, commentId });
     saveFeedbackToLocalStorage();
   },
   deleteComment({ commit }, { feedbackId, id }) {

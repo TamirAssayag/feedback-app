@@ -26,13 +26,15 @@
           <Comment :data="comment" />
 
           <div class="replies" v-if="comment.replies">
-            <div
-              class="replies__wrapper"
-              v-for="reply in comment.replies"
-              :key="reply.content"
-            >
-              <Replies :data="reply" />
-            </div>
+            <template v-for="reply in comment.replies">
+              <div
+                v-if="reply.replyingTo === comment.user.username"
+                class="replies__wrapper"
+                :key="reply.content"
+              >
+                <Replies :data="reply" />
+              </div>
+            </template>
           </div>
           <v-divider class="mb-5" v-if="i !== comments.length - 1" />
         </div>
