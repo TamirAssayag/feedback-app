@@ -90,7 +90,7 @@ const mutations = {
     const { comments } = state.feedbacks[identifier];
     if (!comments.length) return;
 
-    if (Array.isArray(comments?.replies)) {
+    if (Array.isArray(comments[commentIdentifier]?.replies)) {
       state.feedbacks[identifier].comments[commentIdentifier].replies.push({
         content: reply,
         replyingTo,
