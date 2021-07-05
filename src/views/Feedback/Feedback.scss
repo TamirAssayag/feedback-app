@@ -14,7 +14,6 @@
   }
 
   &__wrapper {
-    margin: 0rem 0 1.6rem;
   }
 }
 
@@ -27,31 +26,7 @@
     margin: 0 !important;
   }
 
-  &__delete {
-    display: flex;
-    width: 100%;
 
-    .ui-button {
-      margin-right: 0;
-      margin-left: auto;
-      padding: 0 !important;
-
-      .v-btn__content {
-        margin-left: 2rem !important;
-      }
-
-      .mdi-delete {
-        font-size: 20px;
-        color: $text-primary;
-        opacity: 0.5;
-        transition: all 0.2s ease;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-  }
 
   hr {
     opacity: 0.1;

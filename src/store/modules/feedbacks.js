@@ -7,6 +7,17 @@ const state = {
   sortBy: "most_upvotes",
 };
 
+const getIndexById = (id) => {
+  return state.feedbacks.findIndex((i) => i.id === Number(id));
+};
+
+const getIndexComment = (id, commentId) => {
+  const identifier = state.feedbacks.findIndex((i) => i.id === Number(id));
+  return state.feedbacks[identifier].comments.findIndex(
+    (i) => i.id === Number(commentId)
+  );
+};
+
 const mutations = {
   setFeedbacks(state, payload) {
     // Setting by default missing data arrays such as comments and replies for efficiency.
@@ -59,7 +70,7 @@ const mutations = {
   },
 
   addComment(state, { id, comment }) {
-    const identifier = state.feedbacks.findIndex((i) => i.id === Number(id));
+    const identifier = getIndexById(id);
     if (state.feedbacks[identifier]?.comments) {
       const lastItemInArray =
         state.feedbacks[identifier]?.comments[
@@ -82,10 +93,8 @@ const mutations = {
   },
 
   addReply(state, { id, reply, replyingTo, commentId }) {
-    const identifier = state.feedbacks.findIndex((i) => i.id === Number(id));
-    const commentIdentifier = state.feedbacks[identifier].comments.findIndex(
-      (i) => i.id === Number(commentId)
-    );
+    const identifier = getIndexById(id);
+    const commentIdentifier = getIndexComment(id, commentId);
 
     const { comments } = state.feedbacks[identifier];
     if (!comments.length) return;
@@ -108,13 +117,19 @@ const mutations = {
   },
 
   deleteComment(state, { feedbackId, id }) {
-    const identifier = state.feedbacks.findIndex(
-      (i) => i.id === Number(feedbackId)
-    );
-
+    const identifier = getIndexById(feedbackId);
     state.feedbacks[identifier].comments = state.feedbacks[
       identifier
     ].comments.filter((fb) => fb.id !== id);
+  },
+
+  deleteReply(state, { feedbackId, commentId, index }) {
+    const identifier = getIndexById(feedbackId);
+    const commentIdentifier = getIndexComment(feedbackId, commentId);
+    state.feedbacks[identifier].comments[commentIdentifier].replies.splice(
+      index,
+      1
+    );
   },
 };
 
@@ -165,6 +180,10 @@ const actions = {
   },
   deleteComment({ commit }, { feedbackId, id }) {
     commit("deleteComment", { feedbackId, id });
+    saveFeedbackToLocalStorage();
+  },
+  deleteReply({ commit }, { feedbackId, commentId, index }) {
+    commit("deleteReply", { feedbackId, commentId, index });
     saveFeedbackToLocalStorage();
   },
 };

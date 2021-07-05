@@ -18,26 +18,39 @@
         <header class="comments__header">
           <h3>{{ feedback.totalComments }} Comments</h3>
         </header>
-        <div
-          class="comments__wrapper"
+
+        <v-expand-transition
           v-for="(comment, i) in comments"
           :key="comment.id + i"
         >
-          <Comment :data="comment" />
+          <div class="comments__wrapper">
+            <Comment :data="comment" />
 
-          <div class="replies" v-if="comment.replies">
-            <template v-for="reply in comment.replies">
+            {{ comment.replies }}
+
+            <div class="replies" v-if="comment.replies">
               <div
-                v-if="reply.replyingTo === comment.user.username"
-                class="replies__wrapper"
-                :key="reply.content"
+                v-for="(reply, index) in comment.replies"
+                :key="reply.replyingTo + index"
               >
-                <Replies :data="reply" />
+                <div class="replies__wrapper">
+                  <Replies
+                    :data="reply"
+                    :commentId="comment.id"
+                    @onDelete="
+                      deleteReply({
+                        feedbackId: $route.params.id,
+                        commentId: comment.id,
+                        index: index,
+                      })
+                    "
+                  />
+                </div>
               </div>
-            </template>
+            </div>
+            <v-divider class="mb-5" v-if="i !== comments.length - 1" />
           </div>
-          <v-divider class="mb-5" v-if="i !== comments.length - 1" />
-        </div>
+        </v-expand-transition>
       </section>
       <AddComment @onSubmit="handleSubmit" />
     </div>
@@ -78,7 +91,12 @@ export default {
   methods: {
     ...mapActions({
       addComment: "feedbacks/addComment",
+      deleteReply: "feedbacks/deleteReply",
     }),
+
+    handleDeleteReply(reply, index) {
+      reply.splice(index, 1);
+    },
 
     editFeedback() {
       this.$router.push({ name: "edit_fb" }).catch((err) => console.log(err));

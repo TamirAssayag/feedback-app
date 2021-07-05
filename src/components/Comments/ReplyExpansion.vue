@@ -1,5 +1,5 @@
 <template>
-  <v-scroll-y-transition>
+  <v-scroll-y-transition appear>
     <div class="reply__expansion" v-if="value">
       <v-textarea
         height="150px"

@@ -4,30 +4,25 @@
       :image="data.user.image"
       :name="data.user.name"
       :username="data.user.username"
-      @onReply="handleExpansion(data)"
+      @onReply="handleExpansion"
     />
 
     <p class="comment__content">
       {{ data.content }}
     </p>
 
-    <ReplyExpension
+    <ReplyExpansion
       :username="data.user.username"
       :value="hasReplyTextArea"
       @click="handleReply"
     />
 
-    <div class="comment__delete">
+    <div class="trash__delete">
       <UIButton
-        v-if="data.user === user"
+        v-if="data.user.username === user.username"
         :color="'transparent'"
         :elevation="0"
-        @click="
-          deleteComment({
-            feedbackId: $route.params.id,
-            id: data.id,
-          })
-        "
+        @click="handleDeleteComment"
       >
         <v-icon>mdi mdi-delete</v-icon>
       </UIButton>
@@ -38,10 +33,10 @@
 <script>
 import { mapActions } from "vuex";
 import UIButton from "../Layout/UI/UIButton.vue";
-import ReplyExpension from "./ReplyExpension.vue";
+import ReplyExpansion from "./ReplyExpansion.vue";
 import User from "./User.vue";
 export default {
-  components: { User, ReplyExpension, UIButton },
+  components: { User, ReplyExpansion, UIButton },
 
   data: () => ({
     hasReplyTextArea: false,
@@ -58,9 +53,15 @@ export default {
       addReply: "feedbacks/addReply",
     }),
 
-    handleExpansion(id) {
+    handleExpansion() {
       this.hasReplyTextArea = !this.hasReplyTextArea;
-      console.log(id);
+    },
+
+    handleDeleteComment() {
+      this.deleteComment({
+        feedbackId: this.$route.params.id,
+        id: this.data.id,
+      });
     },
 
     handleReply(content) {
