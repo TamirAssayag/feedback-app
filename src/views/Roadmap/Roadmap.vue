@@ -7,23 +7,24 @@
           background-color="transparent"
           color="dark_blue"
           grow
+          :slider-color="tabColor"
         >
-          <v-tab v-for="item in items" :key="item">
-            {{ item }} ({{ displayStatusAmount(item) }})
+          <v-tab v-for="item in tabItems" :key="item.status">
+            {{ item.status }} ({{ displayStatusAmount(item.status) }})
           </v-tab>
         </v-tabs>
       </div>
     </portal>
     <v-fade-transition appear>
       <v-tabs-items v-model="tab">
-        <v-tab-item v-for="item in items" :key="item">
-          <h3>{{ item }} ({{ displayStatusAmount(item) }})</h3>
+        <v-tab-item v-for="item in tabItems" :key="item.status">
+          <h3>{{ item.status }} ({{ displayStatusAmount(item.status) }})</h3>
           <div class="roadmap__header">
             <p class="roadmap__header__subtitle">
-              {{ displayTextByStatus(item) }}
+              {{ displayTextByStatus(item.status) }}
             </p>
           </div>
-          <div v-for="feed in feedbackByStatus(item)" :key="feed.id">
+          <div v-for="feed in feedbackByStatus(item.status)" :key="feed.id">
             <FeedbackCard
               :feed="feed"
               :color="feed.status"
@@ -46,15 +47,30 @@ export default {
 
   data: () => ({
     tab: null,
-    items: ["Planned", "In-Progress", "Live"],
+    tabItems: [
+      {
+        status: "Planned",
+        color: "#f49f85",
+      },
+      {
+        status: "In-Progress",
+        color: "#ad1fea",
+      },
+      {
+        status: "Live",
+        color: "#62bcfa",
+      },
+    ],
     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    feed: [],
   }),
 
   computed: {
     ...mapGetters({
       getFeedbacksByStatus: "feedbacks/getFeedbacksByStatus",
     }),
+    tabColor() {
+      return this.tabItems?.[this.tab]?.color;
+    },
   },
 
   methods: {

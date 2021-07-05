@@ -174,10 +174,6 @@ export default {
   }
 
   .v-tabs {
-    &-slider {
-      background-color: $purple !important;
-    }
-
     &-bar.v-item-group > * {
       height: 3.75rem !important;
     }
