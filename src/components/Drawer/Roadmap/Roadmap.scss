@@ -1,21 +1,22 @@
 @import "@/styles/colors.scss";
 
 .roadmap {
-  &__card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+  &__drawer {
+    &__card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
 
-    .view_link {
-      cursor: pointer;
-      color: $blue;
-      font-weight: 600;
-      font-size: 13px;
-      text-decoration: underline;
+      .view_link {
+        cursor: pointer;
+        color: $blue;
+        font-weight: 600;
+        font-size: 13px;
+        text-decoration: underline;
+      }
     }
   }
-
   &__list {
     width: 100%;
     display: flex;

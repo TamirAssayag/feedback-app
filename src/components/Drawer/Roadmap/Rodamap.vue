@@ -1,11 +1,11 @@
 <template>
-  <div class="card roadmap">
-    <header class="roadmap__card-header">
+  <div class="card roadmap__drawer">
+    <header class="roadmap__drawer__card-header">
       <h3>Roadmap</h3>
       <span class="view_link" @click="$router.push('/roadmap')">View</span>
     </header>
 
-    <div class="roadmap__card__content">
+    <div class="roadmap__drawer__card__content">
       <ul class="roadmap__list">
         <li
           class="roadmap__list__item"

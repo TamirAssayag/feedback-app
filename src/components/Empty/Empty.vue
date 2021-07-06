@@ -1,6 +1,6 @@
 !
 <template>
-  <div class="empty container" v-if="!feedbacks.length">
+  <div class="empty container" v-if="!suggestions.length">
     <div class="empty__content">
       <inlineSvg :src="getImageUrl('suggestions/illustration-empty.svg')" />
       <h2 class="empty__title">

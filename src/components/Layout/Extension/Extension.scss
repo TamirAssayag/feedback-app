@@ -1,0 +1,76 @@
+@import "@/styles/colors.scss";
+@import "@/styles/import.scss";
+
+.extension {
+  &_bar {
+    background-color: #373f68;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    color: white !important;
+
+    .ui-button__feedback {
+      margin-left: auto !important;
+    }
+
+    @include media(">=md") {
+      width: 720px;
+      height: 72px;
+      margin: auto;
+      padding: 1.6rem;
+      border-radius: 10px;
+
+      .text_extension {
+        margin-left: 2.3rem;
+      }
+
+      &__tablet {
+        padding: 0 1.5rem;
+      }
+
+      &__suggestions {
+        display: flex;
+        gap: 1rem;
+
+        h3 {
+          color: white;
+        }
+      }
+
+      &__roadmap {
+        height: 113px;
+        width: 720px;
+        display: flex;
+        align-items: center;
+        margin: 3.5rem auto 2rem;
+        padding: 1.6rem;
+        border-radius: 10px;
+        color: white !important;
+        background-color: #373f68;
+
+        &__content {
+          h3 {
+            color: white;
+            font-size: 24px;
+          }
+
+          .goback {
+            margin-left: -1.7rem;
+          }
+
+          .ui-button {
+            margin: 0 !important;
+          }
+        }
+        .ui-button__feedback {
+          margin-left: auto !important;
+        }
+      }
+    }
+
+    .ui-button__feedback {
+      margin: 0;
+    }
+  }
+}

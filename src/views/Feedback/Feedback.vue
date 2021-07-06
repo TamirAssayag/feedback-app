@@ -1,7 +1,7 @@
 <template>
   <section>
     <router-view />
-    <div v-if="feedback" :class="`container feedback_${feedback.status}`">
+    <div v-if="feedback" class="container single-feedback">
       <Navbar :maxHeight="36" notSticky @onBack="goBack">
         <template v-slot:action>
           <UIButton class="ui-button__edit_feedback" @click="editFeedback">

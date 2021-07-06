@@ -18,6 +18,7 @@
 import "./AddFeedback.scss";
 import Navbar from "../../Layout/Navbar/Navbar.vue";
 import Form from "./Form/Form.vue";
+import { mapActions } from "vuex";
 
 export default {
   components: { Navbar, Form },
@@ -27,6 +28,10 @@ export default {
   }),
 
   methods: {
+    ...mapActions({
+      deleteFeedback: "feedbacks/deleteFeedback",
+    }),
+
     deleteFb() {
       this.deleteFeedback(this.$route.params.id);
       this.isOpen = false;

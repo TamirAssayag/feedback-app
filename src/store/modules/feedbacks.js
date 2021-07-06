@@ -205,11 +205,14 @@ const getters = {
       return { ...fb, totalComments };
     });
   },
+  suggestions: (state, getters) => {
+    return getters.feedbacks.filter((fb) => fb.status === "suggestion");
+  },
   getFilter: (state) => state.filter,
   getSortBy: (state) => state.sortBy,
 
   feedbackByCategory: (state, getters) => {
-    let filterByCategory = getters.feedbacks.filter((feedback) => {
+    let filterByCategory = getters.suggestions.filter((feedback) => {
       if (state.filter === "all") return feedback;
       return feedback.category.toLowerCase() === state.filter.toLowerCase();
     });
@@ -253,10 +256,7 @@ const getters = {
     return (roadmap) => {
       return getters.feedbacks
         .map((fb) => fb.status)
-        .filter((status) => {
-          if (status === "suggestion") return;
-          return status === roadmap;
-        });
+        .filter((status) => status === roadmap);
     };
   },
 };

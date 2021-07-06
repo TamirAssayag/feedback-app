@@ -7,6 +7,7 @@ import { Fragment } from "vue-fragment";
 import InlineSvg from "vue-inline-svg";
 import Vuelidate from "vuelidate";
 import PortalVue from "portal-vue";
+import VueScreen from "./plugins/vue-screen";
 
 // Mixins
 import getImageUrl from "./mixins/getImageUrl";
@@ -27,5 +28,6 @@ new Vue({
   router,
   store,
   vuetify,
+  VueScreen,
   render: (h) => h(App),
 }).$mount("#app");

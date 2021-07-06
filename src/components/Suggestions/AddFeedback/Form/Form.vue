@@ -239,7 +239,6 @@ export default {
     ...mapActions({
       addFeedback: "feedbacks/addFeedback",
       saveFeedbackById: "feedbacks/saveFeedbackById",
-      deleteFeedback: "feedbacks/deleteFeedback",
     }),
     handleSaveForm() {
       this.$v.$touch();

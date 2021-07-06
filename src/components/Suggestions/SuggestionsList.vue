@@ -1,6 +1,6 @@
 <template>
   <div class="container cards">
-    <template v-for="feed in feedbacks">
+    <template v-for="feed in suggestions">
       <FeedbackCard
         :key="feed.id"
         :feed="feed"

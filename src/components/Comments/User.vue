@@ -31,6 +31,7 @@ export default {
 
 <style lang="scss">
 @import "@/styles/colors.scss";
+@import "@/styles/import";
 
 .user {
   display: flex;
@@ -41,12 +42,19 @@ export default {
     font-weight: bold;
     color: $dark_blue;
     letter-spacing: -0.18px;
+    @include media(">=md") {
+      font-size: 14px;
+    }
   }
 
   &__username {
     font-size: 13px;
     color: $text_primary;
     letter-spacing: -0.18px;
+
+    @include media(">=md") {
+      font-size: 14px;
+    }
   }
 
   .v-image {

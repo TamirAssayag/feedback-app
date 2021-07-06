@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs">
+  <div class="tabs" v-if="!$screen.md">
     <portal to="layoutNavbar">
       <div class="tabs_bar">
         <v-tabs
@@ -21,7 +21,7 @@
           <h3>{{ item.status }} ({{ displayStatusAmount(item.status) }})</h3>
           <div class="roadmap__header">
             <p class="roadmap__header__subtitle">
-              {{ displayTextByStatus(item.status) }}
+              {{ item.text }}
             </p>
           </div>
           <div v-for="feed in feedbackByStatus(item.status)" :key="feed.id">
@@ -36,13 +36,35 @@
       </v-tabs-items>
     </v-fade-transition>
   </div>
+
+  <div v-else class="container">
+    <div class="roadmap__grid">
+      <div class="roadmap__items" v-for="item in tabItems" :key="item.status">
+        <div class="roadmap__header">
+          <h5>{{ item.status }} ({{ displayStatusAmount(item.status) }})</h5>
+          <p class="roadmap__header__subtitle">
+            {{ item.text }}
+          </p>
+        </div>
+        <div v-for="feed in feedbackByStatus(item.status)" :key="feed.id">
+          <RoadmapCard
+            :feed="feed"
+            :color="feed.status"
+            @onVote="upVoteFeedbackById(feed.id)"
+            @direct="directToFeedback(feed.id)"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 import FeedbackCard from "@/components/Layout/FeedbackCard/FeedbackCard.vue";
+import RoadmapCard from "./Card/RoadmapCard.vue";
 export default {
-  components: { FeedbackCard },
+  components: { FeedbackCard, RoadmapCard },
   name: "Roadmap",
 
   data: () => ({
@@ -50,14 +72,17 @@ export default {
     tabItems: [
       {
         status: "Planned",
+        text: "Ideas prioritized for research",
         color: "#f49f85",
       },
       {
         status: "In-Progress",
+        text: "Currently being developed",
         color: "#ad1fea",
       },
       {
         status: "Live",
+        text: "Released features",
         color: "#62bcfa",
       },
     ],
@@ -74,15 +99,6 @@ export default {
   },
 
   methods: {
-    displayTextByStatus(item) {
-      if (item === "Planned") {
-        return "Ideas prioritized for research";
-      } else if (item === "In-Progress") {
-        return "Currently being developed";
-      } else {
-        return "Released features";
-      }
-    },
     feedbackByStatus(status) {
       return this.getFeedbacksByStatus(status.toLowerCase());
     },
@@ -92,12 +108,29 @@ export default {
 
 <style lang="scss">
 @import "@/styles/colors.scss";
+@import "@/styles/import";
 .roadmap__header {
   margin-bottom: 1.5rem;
+
+  h5 {
+    color: $dark_blue;
+    font-size: 14px;
+  }
 
   &__subtitle {
     color: $text_primary;
     font-size: 13px;
+
+    @include media(">=md") {
+      font-size: 14px;
+    }
   }
+}
+
+.roadmap__grid {
+  display: grid;
+  place-content: center;
+  grid-template-columns: repeat(3, 233px);
+  gap: 10px;
 }
 </style>

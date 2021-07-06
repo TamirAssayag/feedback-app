@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600&display=swap");
 @import "./mixins.scss";
 @import "./colors.scss";
+@import "./import.scss";
 
 html,
 body {
@@ -12,6 +13,11 @@ body {
   overflow-y: hidden;
   overflow-x: hidden;
   max-height: 100vh;
+
+  @include media(">md") {
+    padding-right: 8px;
+    background-color: $light-bg;
+  }
 }
 
 .v-application {
@@ -29,13 +35,18 @@ body {
   padding: 1.5rem;
 }
 
-.fb__card {
+.fb__card,
+.roadmap__card {
   min-height: 178px;
   width: 100%;
   background-color: white;
   border-radius: 10px;
   margin: 1.5rem 0;
   overflow: hidden;
+
+  @include media(">=md") {
+    min-height: 151px !important;
+  }
 
   &:first-child {
     margin: 0 0 1.5rem;
@@ -86,6 +97,12 @@ body {
 
 .container {
   padding: 32px 24px;
+
+  @include media(">md") {
+    width: 768px;
+    margin: 0 auto;
+    padding: 24px;
+  }
 }
 
 h1,
@@ -117,5 +134,24 @@ h3 {
         opacity: 1;
       }
     }
+  }
+}
+
+.goback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3px;
+  cursor: pointer;
+
+  svg {
+    path {
+      stroke: white !important;
+    }
+  }
+
+  .navbar__icon__text {
+    font-weight: 500;
+    color: white !important;
   }
 }

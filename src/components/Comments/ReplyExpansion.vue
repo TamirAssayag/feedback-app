@@ -2,7 +2,7 @@
   <v-scroll-y-transition appear hide-on-leave>
     <div class="reply__expansion" v-if="value">
       <v-textarea
-        height="150px"
+        v-if="value"
         required
         no-resize
         :label="`Replying to @${username}`"
@@ -12,11 +12,17 @@
         @blur="$v.content.$touch()"
       >
       </v-textarea>
-      <div class="send">
+      <v-btn
+        class="send"
+        icon
+        :disabled="$v.$invalid"
+        color="transparent"
+        plain
+      >
         <v-icon class="send_reply" @click="submit"
           >mdi-send-circle-outline</v-icon
         >
-      </div>
+      </v-btn>
     </div>
   </v-scroll-y-transition>
 </template>
@@ -55,7 +61,7 @@ export default {
 .reply__expansion {
   min-height: 150px;
   width: 100%;
-  border-radius: 1rem !important;
+  border-radius: 10px !important;
   background-color: $lighter-bg !important;
   padding: 0.2rem 1rem;
 

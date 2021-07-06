@@ -13,11 +13,10 @@ $white: #fff;
     background-color: transparent !important;
   }
   &--gradient {
-    @include media(">md") {
-      background-size: cover;
-    }
-    // background: $gradient_navbar !important;
     &.mobile {
+      @include media(">sm") {
+        background-size: contain;
+      }
       background-image: url("./../../../assets/suggestions/mobile/background-header.png");
     }
     &.tablet {

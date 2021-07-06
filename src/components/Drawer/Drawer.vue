@@ -1,5 +1,11 @@
 <template>
-  <v-navigation-drawer fixed v-model="drawerModel" right class="menu__drawer">
+  <v-navigation-drawer
+    fixed
+    v-model="drawerModel"
+    right
+    class="menu__drawer"
+    v-if="routeMatches"
+  >
     <FilterButtons />
     <Rodamap />
   </v-navigation-drawer>
@@ -16,6 +22,9 @@ export default {
   },
 
   computed: {
+    routeMatches() {
+      return this.$route.name !== "id" && this.$route.name !== "edit_fb";
+    },
     drawerModel: {
       get() {
         return this.value;

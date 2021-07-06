@@ -1,4 +1,11 @@
 @import "@/styles/colors.scss";
+@import "@/styles/import.scss";
+.single-feedback {
+  @include media(">=md") {
+    margin-top: 2rem;
+  }
+}
+
 .ui-button {
   &__edit_feedback {
     padding: 1.25rem 1.1669rem !important;
@@ -12,9 +19,6 @@
   &__header {
     margin-bottom: 1rem;
   }
-
-  &__wrapper {
-  }
 }
 
 .comment {
@@ -24,9 +28,11 @@
     color: $text-primary;
     font-size: 13px;
     margin: 0 !important;
+
+    @include media(">=md") {
+      font-size: 15px;
+    }
   }
-
-
 
   hr {
     opacity: 0.1;

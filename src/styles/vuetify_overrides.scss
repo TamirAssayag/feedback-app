@@ -1,4 +1,5 @@
 @import "./colors.scss";
+@import "@/styles/import.scss";
 
 .v-btn {
   &--plain:not(.v-btn--active):not(.v-btn--loading):not(:focus):not(:hover)
@@ -184,10 +185,28 @@
     }
   }
 }
-.v-dialog--fullscreen {
-  background-color: $lighter-bg !important;
-  padding: 2rem 1.5rem 1.5rem;
-  height: 100% !important;
+
+.v-dialog {
+  &--fullscreen {
+    background-color: $lighter-bg !important;
+    padding: 2rem 1.5rem 1.5rem;
+    height: 100% !important;
+  }
+
+  & > * {
+    @include media(">md") {
+      width: 768px !important;
+      margin: auto;
+    }
+
+    @include media(">=lg") {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 
 .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active),

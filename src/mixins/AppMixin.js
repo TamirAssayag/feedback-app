@@ -29,7 +29,8 @@ export default {
 
   computed: {
     ...mapGetters({
-      feedbacks: "feedbacks/feedbackByCategory",
+      feedbacks: "feedbacks/feedbacks",
+      suggestions: "feedbacks/feedbackByCategory",
       getFeedbackById: "feedbacks/getFeedbackById",
       getFeedbackCommentsById: "feedbacks/getFeedbackCommentsById",
       user: "feedbacks/user",
