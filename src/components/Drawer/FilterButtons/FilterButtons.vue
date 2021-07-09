@@ -46,6 +46,7 @@ export default {
 
 <style lang="scss">
 @import "@/styles/colors.scss";
+@import "@/styles/import.scss";
 .filter {
   .ui-button {
     &__primary {
@@ -65,6 +66,10 @@ export default {
         background-color: $blue-hover !important;
       }
     }
+  }
+  @include media(">=lg") {
+    width: 255px;
+    min-height: 166px;
   }
 }
 </style>

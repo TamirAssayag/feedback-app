@@ -61,11 +61,15 @@
   &__comments {
     color: $dark_blue;
     transform: none !important;
+    cursor: unset !important;
+    font-weight: bold !important;
   }
 
   &__comments_empty {
     color: #949cc4 !important;
     transform: none !important;
+    cursor: unset !important;
+    font-weight: bold !important;
   }
 
   &__feedback {

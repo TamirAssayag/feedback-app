@@ -8,6 +8,7 @@
     class="ui-button"
     :class="[`ui-button__${color} ui-button__${uistyle}`]"
     @click="$emit('click')"
+    @click.stop="$emit('clickStop')"
     :rounded="rounded"
     v-bind="attrs"
     v-on="on"

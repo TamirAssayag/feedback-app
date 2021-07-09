@@ -8,6 +8,7 @@
           color="dark_blue"
           grow
           :slider-color="tabColor"
+          :ripple="false"
         >
           <v-tab v-for="item in tabItems" :key="item.status">
             {{ item.status }} ({{ displayStatusAmount(item.status) }})
@@ -37,10 +38,14 @@
     </v-fade-transition>
   </div>
 
-  <div v-else class="container">
-    <div class="roadmap__grid">
-      <div class="roadmap__items" v-for="item in tabItems" :key="item.status">
-        <div class="roadmap__header">
+  <div v-else class="roadmap__grid">
+    <div
+      class="roadmap__items"
+      v-for="(item, index) in tabItems"
+      :key="item.status"
+    >
+      <v-fade-transition appear group>
+        <div class="roadmap__header" :key="index">
           <h5>{{ item.status }} ({{ displayStatusAmount(item.status) }})</h5>
           <p class="roadmap__header__subtitle">
             {{ item.text }}
@@ -54,7 +59,7 @@
             @direct="directToFeedback(feed.id)"
           />
         </div>
-      </div>
+      </v-fade-transition>
     </div>
   </div>
 </template>
@@ -127,10 +132,20 @@ export default {
   }
 }
 
-.roadmap__grid {
-  display: grid;
-  place-content: center;
-  grid-template-columns: repeat(3, 233px);
-  gap: 10px;
+.roadmap {
+  transition: all 0.2s ease !important;
+  @include media(">=lg") {
+    height: 272px;
+  }
+  &__grid {
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(3, 233px);
+    gap: 10px;
+
+    @include media(">=lg") {
+      grid-template-columns: repeat(3, 358px);
+    }
+  }
 }
 </style>

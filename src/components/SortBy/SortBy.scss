@@ -29,12 +29,6 @@
           font-weight: 500;
         }
       }
-
-      &.v-text-field.v-input--is-focused
-        > .v-input__control
-        > .v-input__slot:after {
-        display: none !important;
-      }
     }
 
     .v-input__control {

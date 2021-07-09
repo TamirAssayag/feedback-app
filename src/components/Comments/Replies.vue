@@ -1,12 +1,14 @@
 <template>
-  <div>
+  <div class="replies__container">
     <div class="replies__wrapper">
-      <User
-        :image="data.user.image"
-        :name="data.user.name"
-        :username="data.user.username"
-        @onReply="handleExpansion"
-      />
+      <div class="replies__user">
+        <User
+          :image="data.user.image"
+          :name="data.user.name"
+          :username="data.user.username"
+          @onReply="handleExpansion"
+        />
+      </div>
 
       <div class="replies__wrapper__content">
         <span class="replying_to">@{{ data.replyingTo }}</span>
@@ -25,11 +27,13 @@
         </UIButton>
       </div>
 
-      <ReplyExpansion
-        :username="data.user.username"
-        :value="replyShown"
-        @click="handleReply"
-      />
+      <div class="replies__reply__expansion">
+        <ReplyExpansion
+          :username="data.user.username"
+          :value="replyShown"
+          @click="handleReply"
+        />
+      </div>
     </div>
   </div>
 </template>

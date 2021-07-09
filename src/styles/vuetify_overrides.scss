@@ -8,10 +8,8 @@
   }
 }
 
-.v-application {
-  & p {
-    margin: 0 !important;
-  }
+p {
+  margin: 0 !important;
 }
 
 .v-application ul,
@@ -21,6 +19,8 @@
 }
 
 .v-text-field {
+  margin: 0 !important;
+  padding: 0 !important;
   &.v-input--is-focused > .v-input__control > .v-input__slot {
     &:after {
       display: none;
@@ -132,6 +132,11 @@
   &__title {
     color: $text_primary;
     transition: all 0.2s ease;
+
+    @include media(">=md") {
+      font-size: 15px !important;
+    }
+
     &:hover {
       color: $purple;
     }
@@ -161,32 +166,9 @@
     font-size: 11px !important;
   }
 }
-.v-expansion-panel {
-  border-radius: 1rem !important;
-  background-color: $lighter-bg !important;
-
-  &::before {
-    box-shadow: none !important;
-  }
-
-  &-content {
-    padding: 0.3rem 0 !important;
-
-    textarea {
-      color: $text_primary !important;
-    }
-
-    &__wrap {
-      position: relative !important;
-      width: 100%;
-      box-shadow: none !important;
-      padding: 0 !important;
-      overflow: hidden;
-    }
-  }
-}
 
 .v-dialog {
+  box-shadow: unset !important;
   &--fullscreen {
     background-color: $lighter-bg !important;
     padding: 2rem 1.5rem 1.5rem;
@@ -194,9 +176,9 @@
   }
 
   & > * {
-    @include media(">md") {
-      width: 768px !important;
-      margin: auto;
+    @include media(">=md") {
+      width: 540px !important;
+      margin: 1.5rem auto !important;
     }
 
     @include media(">=lg") {
@@ -205,6 +187,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      margin: auto !important;
     }
   }
 }
@@ -215,6 +198,18 @@
 .theme--light.v-tabs > .v-tabs-bar .v-tab--disabled {
   color: #3a4374 !important;
   opacity: 0.5;
+}
+
+.v-tabs {
+  .v-tabs-slider {
+    transition: background-color 200ms ease-out, border-color 200ms ease-out;
+  }
+  .v-tab {
+    .v-ripple__container,
+    &:hover::before {
+      opacity: 0 !important;
+    }
+  }
 }
 
 .v-window {
@@ -234,14 +229,21 @@
   label,
   ::placeholder {
     font-size: 13px;
-    color: $text_primary !important ;
+    color: $text_primary !important;
     opacity: 0.5;
-    margin: 0 !important;
   }
 
   textarea {
-    margin-top: 0.5rem;
-    min-height: 100px !important;
+    padding: 0.5rem !important;
     color: $text_primary !important;
+  }
+}
+
+.v-divider {
+  opacity: 0.1 !important;
+  border-color: #647196 !important;
+
+  @include media(">=md") {
+    margin-left: 1rem;
   }
 }

@@ -1,12 +1,16 @@
 @import "@/styles/colors.scss";
 @import "@/styles/import.scss";
 .feedback {
+  width: 100%;
   &_wrapper {
-    position: relative;
     width: 100%;
+    position: relative;
     min-height: 708px;
     margin-top: 2.625rem;
 
+    @include media(">=md") {
+      width: 540px;
+    }
     &.card {
       margin-bottom: 0;
     }
@@ -15,49 +19,26 @@
       position: absolute;
       top: -1.5rem;
       height: 40px;
+
+      @include media(">=md") {
+        height: 56px;
+        top: -2rem;
+        left: 2.5rem;
+      }
     }
 
     &__header {
       margin-top: 1.1rem;
+      width: 100%;
+      word-break: break-word;
       h4 {
         color: $dark_blue;
         letter-spacing: -0.25px;
         font-size: 18px;
-      }
-    }
-  }
 
-  &_form {
-    &__header {
-      margin-top: 1.5rem;
-
-      &__title {
-        color: $dark_blue;
-        font-weight: bold;
-        font-size: 13px;
-      }
-
-      &__subhead {
-        font-size: 13px !important;
-        color: $text_primary !important;
-      }
-    }
-
-    &__input {
-      margin-top: 1.23rem;
-
-      .v-select__slot {
-        .mdi-chevron-down {
-          color: $blue !important;
+        @include media(">=md") {
+          font-size: 24px !important;
         }
-      }
-    }
-
-    &__buttons {
-      width: 100%;
-      .ui-button {
-        width: 100%;
-        margin: 0 0 1rem !important;
       }
     }
   }

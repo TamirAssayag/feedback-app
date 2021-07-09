@@ -25,6 +25,9 @@ export default {
     statusByName(roadmap) {
       return this.getStatus(roadmap.toLowerCase());
     },
+    checkRoute(route) {
+      return this.$route.name === route;
+    },
   },
 
   computed: {
@@ -32,12 +35,19 @@ export default {
       feedbacks: "feedbacks/feedbacks",
       suggestions: "feedbacks/feedbackByCategory",
       getFeedbackById: "feedbacks/getFeedbackById",
+      getRawFeedbackById: "feedbacks/getRawFeedbackById",
       getFeedbackCommentsById: "feedbacks/getFeedbackCommentsById",
       user: "feedbacks/user",
       getStatus: "feedbacks/getStatus",
     }),
-    feedback() {
-      return this.getFeedbackById(Number(this.$route.params.id));
+    rawFeedback() {
+      return this.getRawFeedbackById(Number(this.$route.params.id));
+    },
+    feedback: {
+      cache: false,
+      get() {
+        return this.getFeedbackById(Number(this.$route.params.id));
+      },
     },
     comments() {
       return this.getFeedbackCommentsById(Number(this.$route.params.id));

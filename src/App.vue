@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <Layout v-model="isMenuOpen" />
+    <MobileLayout v-model="isMenuOpen" v-if="!$screen.md" />
+    <TabletLayout v-if="$screen.md" />
     <Drawer v-model="isMenuOpen" />
     <router-view />
   </v-app>
@@ -10,10 +11,11 @@
 import "./styles/app.scss";
 import { mapActions } from "vuex";
 import data from "@/json/data.json";
-import Layout from "./components/Layout/Layout.vue";
 import Drawer from "./components/Drawer/Drawer.vue";
+import MobileLayout from "./components/Layout/MobileLayout/MobileLayout.vue";
+import TabletLayout from "./components/Layout/TabletLayout/TabletLayout.vue";
 export default {
-  components: { Layout, Drawer },
+  components: { MobileLayout, Drawer, TabletLayout },
   name: "App",
 
   methods: {
@@ -45,3 +47,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "@/styles/import.scss";
+</style>

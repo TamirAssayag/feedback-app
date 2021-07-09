@@ -1,8 +1,8 @@
 @import "~include-media/dist/include-media";
+@import "./mixins.scss";
 
 $breakpoints: (
-  "sm": 25em,
-  "md": 43.6875em,
-  "lg": 75em,
-  "xl": 80em,
+  "sm": 450,
+  "md": 48em,
+  "lg": 90em,
 );

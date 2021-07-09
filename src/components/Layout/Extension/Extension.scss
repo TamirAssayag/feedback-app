@@ -2,6 +2,16 @@
 @import "@/styles/import.scss";
 
 .extension {
+  @include media(">=md") {
+    margin: auto;
+  }
+  @include media(">=lg") {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   &_bar {
     background-color: #373f68;
     height: 56px;
@@ -25,10 +35,6 @@
         margin-left: 2.3rem;
       }
 
-      &__tablet {
-        padding: 0 1.5rem;
-      }
-
       &__suggestions {
         display: flex;
         gap: 1rem;
@@ -43,11 +49,12 @@
         width: 720px;
         display: flex;
         align-items: center;
-        margin: 3.5rem auto 2rem;
+        margin: 3rem auto 2rem;
         padding: 1.6rem;
         border-radius: 10px;
         color: white !important;
         background-color: #373f68;
+        transition: all 0.2s ease !important;
 
         &__content {
           h3 {
@@ -66,7 +73,15 @@
         .ui-button__feedback {
           margin-left: auto !important;
         }
+        @include media(">=lg") {
+          width: 1110px;
+          margin: 4.5rem 0 3.5rem;
+        }
       }
+    }
+
+    @include media(">=lg") {
+      width: 825px;
     }
 
     .ui-button__feedback {

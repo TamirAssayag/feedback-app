@@ -24,19 +24,22 @@
         <button
           v-if="!hideBack"
           :class="[
-            'navbar__icon navbar__icon--back',
+            `navbar__icon navbar__icon--back `,
             { 'navbar__icon--with-slot': hasBackTextSlot },
           ]"
           @click="$emit('onBack')"
-          title="Back"
+          aria-label="Go Back"
+          title="Go Back"
         >
           <InlineSvg
             :src="getImageUrl('shared/icon-arrow-left.svg')"
-            aria-label="Close"
-            fill="transparent"
+            aria-label="Go Back Arrow"
+            :class="`svg svg__${backColor}`"
           />
           <slot name="back-text" v-if="hasBackTextSlot" />
-          <div class="navbar__icon__text" v-else>Go Back</div>
+          <div :class="`navbar__icon__text navbar__icon__${backColor}`" v-else>
+            Go Back
+          </div>
           <!-- :stroke="iconsColor" -->
         </button>
         <!-- <div v-else class="navbar__icon navbar__icon--hidden" /> -->
@@ -74,6 +77,8 @@ export default {
   props: {
     /* Default as #FBFAF8, available colors: white, transparent */
     color: String,
+
+    backColor: String,
 
     /* Remove paddings from buttons */
     dense: Boolean,

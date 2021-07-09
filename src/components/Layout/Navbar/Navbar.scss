@@ -14,9 +14,7 @@ $white: #fff;
   }
   &--gradient {
     &.mobile {
-      @include media(">sm") {
-        background-size: contain;
-      }
+      background-size: contain !important;
       background-image: url("./../../../assets/suggestions/mobile/background-header.png");
     }
     &.tablet {
@@ -93,7 +91,7 @@ $white: #fff;
     align-items: center;
     min-width: 80px;
     min-height: var(--nav-height);
-    transition: 166ms ease-in-out;
+    transition: font-weight 66ms ease-in-out;
 
     &__text {
       margin-left: 1rem;
@@ -101,6 +99,7 @@ $white: #fff;
       font-weight: bold;
       color: #647196;
     }
+
     &--back {
       svg {
         transform: translateX(0.2rem);
@@ -128,10 +127,17 @@ $white: #fff;
       align-items: center;
       justify-content: center;
     }
-    svg {
+    svg.svg {
       max-width: 2rem;
       max-height: 2rem;
       transition: 166ms ease-in-out;
+
+      &__white {
+        path {
+          stroke: white;
+        }
+      }
+
       * {
         transition: 66ms ease-out;
       }
@@ -145,18 +151,24 @@ $white: #fff;
     &:not(&--slot):hover {
       cursor: pointer;
       font-weight: 500;
-      svg * {
+      .svg * {
         stroke-width: 3px;
       }
     }
 
     &:active {
-      &.navbar__icon--action svg {
+      &.navbar__icon--action svg.svg {
         transform: rotate(0.25turn);
+        stroke: white !important;
       }
-      &.navbar__icon--back svg {
+      &.navbar__icon--back svg.svg {
         transform: translateX(-5px);
       }
+    }
+
+    &__white {
+      color: white;
+      stroke: white;
     }
   }
 
@@ -172,5 +184,9 @@ $white: #fff;
         max-width: 2.5rem;
       }
     }
+  }
+
+  @include media(">=lg") {
+    margin-top: 1rem;
   }
 }

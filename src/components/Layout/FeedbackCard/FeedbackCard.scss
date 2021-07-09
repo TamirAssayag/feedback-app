@@ -1,64 +1,30 @@
 @import "@/styles/colors.scss";
 @import "@/styles/import.scss";
 
-.suggestion {
-  &:nth-last-of-type(1) {
-    margin-bottom: 0;
-  }
-}
-
 .suggestions {
   padding: 1.5rem;
 
+  @include card;
+
   @include media(">=md") {
-    height: 151px;
-  }
+    min-height: 151px;
 
-  .ui-button {
-    margin: 0;
-  }
-
-  &__title {
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: -0.18px;
-    color: $dark_blue;
-
-    @include media(">=md") {
-      font-size: 18px;
+    &__title {
+      font-size: 1.125rem;
     }
-  }
 
-  &__description {
-    margin: 0 0 0.5rem;
-    width: 279px;
-    color: $text_primary;
-    font-size: 13px;
+    &__content {
+      width: calc(100% - 200px);
+    }
 
-    @include media(">=md") {
+    &__description {
       font-size: 16px;
       width: unset;
       margin: 0 0 12px;
     }
   }
 
-  &__bottom--wrapper {
-    margin-top: 1rem;
-    width: 100%;
-    height: calc(100px - 64px);
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-  }
-
   &__btn {
-    display: flex;
-    align-items: center !important;
-    justify-content: space-around;
-    width: 62px;
-    cursor: unset;
-
     &:nth-of-type(1) {
       width: 69px;
       height: 32px !important;
@@ -79,27 +45,41 @@
       }
     }
   }
+
   &__wrapper {
     @include media(">=md") {
       display: flex;
     }
 
     &__comments {
-      @include media(">=md") {
-        margin-left: auto;
-        align-self: center;
+      margin-left: auto;
+      align-self: center;
 
-        .v-btn__content {
-          font-weight: bold;
-          font-size: 16px !important;
-        }
+      .v-btn__content {
+        font-weight: bold;
+        font-size: 16px !important;
       }
     }
 
     &__upvote {
-      @include media(">=md") {
-        margin-right: 2.5rem;
-      }
+      margin-right: 2.5rem;
     }
+  }
+
+  .ui-button {
+    margin: 0;
+  }
+}
+
+@include media(">=lg") {
+  .cards {
+    display: flex;
+    justify-content: center;
+    margin-top: 4.5rem;
+    margin-right: 1.8rem;
+  }
+
+  .suggestions {
+    width: 825px;
   }
 }

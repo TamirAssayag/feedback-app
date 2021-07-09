@@ -1,49 +1,65 @@
 <template>
   <div class="roadmap__card">
-    <div :class="`tab_color ${color}`" v-if="$route.name === 'roadmap'"></div>
+    <div :class="`tab_color ${color}`"></div>
 
-    <div class="roadmap">
-      <div class="roadmap__status">
-        <div :class="`roadmap__status__indicator ${color}`"></div>
-        <p :class="`roadmap__status__text ${color}`">{{ feed.status }}</p>
-      </div>
+    <div class="roadmap" @click="$emit('direct')">
+      <div class="roadmap__container">
+        <div class="roadmap__status">
+          <div :class="`roadmap__status__indicator ${color}`"></div>
+          <p :class="`roadmap__status__text ${color}`">{{ feed.status }}</p>
+        </div>
 
-      <div class="roadmap__wrapper">
-        <div class="roadmap__content">
-          <span class="roadmap__title" @click="$emit('direct')">
-            {{ feed.title }}
-          </span>
+        <div class="roadmap__wrapper">
+          <div class="roadmap__content">
+            <span class="roadmap__title">
+              <v-clamp autoresize :max-lines="1" v-if="checkRoute('roadmap')">
+                {{ feed.title }}
+              </v-clamp>
+              <p v-else>
+                {{ feed.title }}
+              </p>
+            </span>
 
-          <div class="roadmap__description">
-            {{ feed.description }}
+            <div class="roadmap__description">
+              <v-clamp autoresize :max-lines="2" v-if="checkRoute('roadmap')">
+                {{ feed.description }}
+              </v-clamp>
+              <p v-else>
+                {{ feed.description }}
+              </p>
+            </div>
+
+            <UIButton color="secondary" uistyle="chip" :elevation="0">
+              {{ feed.category }}
+            </UIButton>
           </div>
+        </div>
 
-          <UIButton color="secondary" uistyle="chip" :elevation="0">
-            {{ feed.category }}
+        <div class="roadmap__bottom--wrapper">
+          <UIButton
+            :uistyle="feed.hasUserUpVoted ? 'upvoted' : 'upvote'"
+            :elevation="0"
+            class="roadmap__btn"
+            @clickStop="$emit('onVote')"
+          >
+            <inlineSvg
+              :src="getImageUrl('shared/icon-arrow-up.svg')"
+            ></inlineSvg>
+            {{ feed.upvotes }}
+          </UIButton>
+
+          <UIButton
+            :uistyle="feed.comments.length ? 'comments' : 'comments_empty'"
+            color="transparent"
+            :elevation="0"
+            class="suggestions__btn"
+          >
+            <inlineSvg
+              :src="getImageUrl('shared/icon-comments.svg')"
+            ></inlineSvg>
+            {{ feed.totalComments }}
           </UIButton>
         </div>
-      </div>
-
-      <div class="roadmap__bottom--wrapper">
-        <UIButton
-          :uistyle="feed.hasUserUpVoted ? 'upvoted' : 'upvote'"
-          :elevation="0"
-          class="roadmap__btn"
-          @click="$emit('onVote')"
-        >
-          <inlineSvg :src="getImageUrl('shared/icon-arrow-up.svg')"></inlineSvg>
-          {{ feed.upvotes }}
-        </UIButton>
-
-        <UIButton
-          :uistyle="feed.comments.length ? 'comments' : 'comments_empty'"
-          color="transparent"
-          :elevation="0"
-          class="suggestions__btn"
-        >
-          <inlineSvg :src="getImageUrl('shared/icon-comments.svg')"></inlineSvg>
-          {{ feed.totalComments }}
-        </UIButton>
       </div>
     </div>
   </div>

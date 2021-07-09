@@ -1,9 +1,9 @@
 <template>
-  <div class="fb__card">
-    <div :class="`tab_color ${color}`" v-if="$route.name === 'roadmap'"></div>
+  <div :class="`fb__card sg__${index}`">
+    <div :class="`tab_color ${color}`" v-if="checkRoute('roadmap')"></div>
 
-    <div class="suggestions">
-      <div class="roadmap__status" v-if="$route.name === 'roadmap'">
+    <div class="suggestions" @click.stop="$emit('direct')">
+      <div class="roadmap__status" v-if="checkRoute('roadmap')">
         <div :class="`roadmap__status__indicator ${color}`"></div>
         <p :class="`roadmap__status__text ${color}`">{{ feed.status }}</p>
       </div>
@@ -11,11 +11,11 @@
       <div class="suggestions__wrapper">
         <div class="suggestions__wrapper__upvote">
           <UIButton
-            v-if="$screen.md && $route.name !== 'roadmap'"
+            v-if="$screen.md && !checkRoute('roadmap')"
             :uistyle="feed.hasUserUpVoted ? 'upvoted' : 'upvote'"
             :elevation="0"
             class="suggestions__btn"
-            @click="$emit('onVote')"
+            @clickStop="$emit('onVote')"
           >
             <inlineSvg
               :src="getImageUrl('shared/icon-arrow-up.svg')"
@@ -25,28 +25,54 @@
         </div>
 
         <div class="suggestions__content">
-          <span class="suggestions__title" @click="$emit('direct')">
-            {{ feed.title }}
+          <span
+            class="suggestions__title"
+            :aria-label="feed.title"
+            :title="feed.title"
+          >
+            <v-clamp autoresize :max-lines="1" v-if="checkRoute('Suggestions')">
+              {{ feed.title }}
+            </v-clamp>
+            <p v-else>
+              {{ feed.title }}
+            </p>
           </span>
 
           <div class="suggestions__description">
-            {{ feed.description }}
+            <v-clamp autoresize :max-lines="2" v-if="checkRoute('Suggestions')">
+              {{ feed.description }}
+            </v-clamp>
+            <p v-else>
+              {{ feed.description }}
+            </p>
           </div>
 
-          <UIButton color="secondary" uistyle="chip" :elevation="0">
+          <UIButton
+            color="secondary"
+            uistyle="chip"
+            :elevation="0"
+            :aria-label="feed.category | capitalize"
+            :title="feed.category | capitalize"
+          >
             {{ feed.category }}
           </UIButton>
         </div>
 
         <div
           class="suggestions__wrapper__comments"
-          v-if="$screen.md && $route.name !== 'roadmap'"
+          v-if="$screen.md && !checkRoute('roadmap')"
         >
           <UIButton
             :uistyle="feed.comments.length ? 'comments' : 'comments_empty'"
             color="transparent"
             :elevation="0"
             class="suggestions__btn"
+            :aria-label="`${feed.comments.length} Comments`"
+            :title="`${
+              feed.comments.length
+                ? feed.comments.length + ' Comments'
+                : 'No Comments'
+            }`"
           >
             <inlineSvg
               :src="getImageUrl('shared/icon-comments.svg')"
@@ -92,6 +118,7 @@ export default {
     },
     feed: Object,
     status: String,
+    index: Number,
   },
 };
 </script>

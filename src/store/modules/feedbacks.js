@@ -1,3 +1,4 @@
+import Vue from "vue";
 import sortBy from "lodash/sortBy";
 
 const state = {
@@ -44,7 +45,7 @@ const mutations = {
     state.sortBy = payload;
   },
   upVoteFeedbackById(state, id) {
-    const identifier = state.feedbacks.findIndex((i) => i.id === id);
+    const identifier = getIndexById(id);
     const hasUserUpVoted = state.feedbacks[identifier].hasUserUpVoted;
 
     if (!hasUserUpVoted) state.feedbacks[identifier].upvotes++;
@@ -65,31 +66,24 @@ const mutations = {
   },
 
   saveFeedbackById(state, { id, data }) {
-    const identifier = state.feedbacks.findIndex((i) => i.id === Number(id));
-    state.feedbacks[identifier] = data;
+    const identifier = getIndexById(id);
+    Vue.set(state.feedbacks, identifier, data);
   },
 
   addComment(state, { id, comment }) {
     const identifier = getIndexById(id);
-    if (state.feedbacks[identifier]?.comments) {
-      const lastItemInArray =
-        state.feedbacks[identifier]?.comments[
-          state.feedbacks[identifier]?.comments.length - 1
-        ];
-      const generateId = lastItemInArray?.id ? lastItemInArray.id + 1 : 1;
-      state.feedbacks[identifier].comments.push({
-        id: generateId,
-        content: comment,
-        user: state.currentUser,
-      });
-    }
+    const lastItemInArray =
+      state.feedbacks[identifier]?.comments[
+        state.feedbacks[identifier]?.comments.length - 1
+      ];
+    const generateId = lastItemInArray?.id ? lastItemInArray.id + 1 : 1;
 
-    const setDefaultRepliesArray = state.feedbacks[identifier].comments.forEach(
-      (comm) => {
-        if (!comm.replies) comm.replies = [];
-      }
-    );
-    return setDefaultRepliesArray;
+    state.feedbacks[identifier].comments.push({
+      id: generateId,
+      content: comment,
+      user: state.currentUser,
+      replies: [],
+    });
   },
 
   addReply(state, { id, reply, replyingTo, commentId }) {
@@ -190,6 +184,7 @@ const actions = {
 
 const getters = {
   user: (state) => state.currentUser,
+
   feedbacks: (state) => {
     return state.feedbacks.map((fb) => {
       let totalComments = 0;
@@ -234,7 +229,9 @@ const getters = {
         return filterByCategory;
     }
   },
-
+  getRawFeedbackById: (state) => (id) => {
+    return state.feedbacks.find((feedback) => feedback.id === id);
+  },
   getFeedbackById(state, getters) {
     return (id) => {
       return getters.feedbacks.find((feedback) => feedback.id === id);

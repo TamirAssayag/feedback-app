@@ -45,6 +45,7 @@ export default {
 
   props: {
     data: null,
+    index: Number,
   },
 
   methods: {

@@ -2,49 +2,50 @@
 @import "@/styles/import.scss";
 
 .roadmap {
-  padding: 1.5rem;
+  padding: 1rem 1.5rem 1.5rem;
+  @include card;
   height: 251px;
 
   .ui-button {
     margin: 0;
   }
 
-  &__status {
-    margin-bottom: 14px !important;
+  @include media(">=md") {
+    &__description {
+      margin: 9px 0 1rem;
+    }
   }
 
-  &__title {
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: -0.18px;
-    color: $dark_blue;
-  }
+  @include media(">=lg") {
+    &__header {
+      h5 {
+        font-size: 1.125rem !important;
+      }
+      &__subtitle {
+        font-size: 1rem !important;
+      }
+    }
 
-  &__description {
-    margin: 0 0 1rem;
-    color: $text_primary;
-    font-size: 13px;
-  }
+    &__status {
+      margin-bottom: 14px !important;
 
-  &__bottom--wrapper {
-    margin-top: 1rem;
-    width: 100%;
-    height: calc(100px - 64px);
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-  }
+      &__text {
+        font-size: 1rem !important;
+      }
+    }
 
-  &__btn {
-    display: flex;
-    align-items: center !important;
-    justify-content: space-around;
-    width: 62px;
+    &__title {
+      font-size: 1.125rem;
+    }
 
-    &:nth-of-type(1) {
+    &__description {
+      margin-top: 4px;
+      font-size: 1rem;
+    }
+
+    &__btn {
       width: 69px;
-      height: 32px !important;
+      height: 40px !important;
     }
   }
 }

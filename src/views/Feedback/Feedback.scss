@@ -28,16 +28,12 @@
     color: $text-primary;
     font-size: 13px;
     margin: 0 !important;
+    word-wrap: break-word;
 
     @include media(">=md") {
       font-size: 15px;
+      margin-left: 4.5rem !important;
     }
-  }
-
-  hr {
-    opacity: 0.1;
-    background-color: #8c92b3;
-    margin: 0 auto 1.6rem;
   }
 }
 
@@ -54,6 +50,17 @@
     background-color: #647196;
     top: 0;
     left: 0;
+
+    @include media(">=md") {
+      height: 90%;
+      left: 1rem;
+    }
+  }
+
+  &__user {
+    @include media(">=md") {
+      margin-left: 1.5rem;
+    }
   }
 
   &__wrapper {
@@ -63,11 +70,23 @@
 
     &__content {
       padding: 1rem 0 !important;
+      word-wrap: break-word;
+
+      @include media(">=md") {
+        font-size: 15px;
+        margin-left: 6rem !important;
+      }
 
       .replying_to {
         color: $purple;
         font-weight: bold;
       }
+    }
+  }
+
+  &__reply__expansion {
+    @include media(">=md") {
+      margin-left: calc(96px - 72px);
     }
   }
 }

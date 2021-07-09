@@ -1,30 +1,32 @@
 <template>
-  <v-scroll-y-transition appear hide-on-leave>
+  <v-expand-transition appear>
     <div class="reply__expansion" v-if="value">
-      <v-textarea
-        v-if="value"
-        required
-        no-resize
-        :label="`Replying to @${username}`"
-        v-model="content"
-        :error-messages="replyErrors"
-        @focus="$v.content.$reset()"
-        @blur="$v.content.$touch()"
-      >
-      </v-textarea>
-      <v-btn
-        class="send"
-        icon
-        :disabled="$v.$invalid"
-        color="transparent"
-        plain
-      >
-        <v-icon class="send_reply" @click="submit"
-          >mdi-send-circle-outline</v-icon
+      <v-form class="reply__expansion__form" @submit.prevent="submit">
+        <v-textarea
+          v-if="value"
+          required
+          color="input"
+          no-resize
+          v-model="content"
+          :error-messages="replyErrors"
+          :placeholder="`Replying to @${user.username}`"
+          @focus="$v.content.$reset()"
+          @blur="$v.content.$touch()"
+        ></v-textarea>
+
+        <v-btn
+          class="send"
+          icon
+          :disabled="$v.$invalid"
+          color="transparent"
+          plain
+          type="submit"
         >
-      </v-btn>
+          <v-icon class="send_reply">mdi-send-circle-outline</v-icon>
+        </v-btn>
+      </v-form>
     </div>
-  </v-scroll-y-transition>
+  </v-expand-transition>
 </template>
 
 <script>
@@ -58,12 +60,27 @@ export default {
 
 <style lang="scss">
 @import "@/styles/colors.scss";
+@import "@/styles/import.scss";
+
 .reply__expansion {
-  min-height: 150px;
-  width: 100%;
-  border-radius: 10px !important;
   background-color: $lighter-bg !important;
-  padding: 0.2rem 1rem;
+  border-radius: 10px !important;
+
+  &__form {
+    padding: 0 0.5rem 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      min-height: 50px;
+      color: $text_primary !important;
+    }
+  }
+
+  @include media(">=md") {
+    margin-left: 4.5rem;
+  }
 
   .v-input {
     &--has-state {
@@ -72,28 +89,16 @@ export default {
   }
 
   .send {
-    display: flex;
-    width: 100%;
+    cursor: pointer;
+    align-self: flex-end;
   }
   .send_reply {
-    margin-left: auto;
     color: $blue !important;
-    cursor: pointer;
     transition: all 0.3s ease !important;
-    margin-bottom: 0.5rem;
-
-    .v-input {
-      &.v-textarea {
-        color: $text_primary !important;
-      }
-      &--has-state {
-        border: 1px solid transparent !important;
-      }
-    }
 
     &:active,
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
       color: $purple !important;
     }
   }

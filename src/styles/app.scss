@@ -43,9 +43,18 @@ body {
   border-radius: 10px;
   margin: 1.5rem 0;
   overflow: hidden;
+  transition: transform 0.15s ease-in-out;
+  cursor: pointer;
 
   @include media(">=md") {
+    &:hover {
+      transform: scale(1.02);
+    }
     min-height: 151px !important;
+  }
+
+  @include media(">=lg") {
+    width: 100%;
   }
 
   &:first-child {
@@ -97,11 +106,16 @@ body {
 
 .container {
   padding: 32px 24px;
+  transition: all 0.2s ease;
 
-  @include media(">md") {
+  @include media(">=md") {
     width: 768px;
     margin: 0 auto;
     padding: 24px;
+  }
+
+  @include media(">=lg") {
+    width: 872px;
   }
 }
 
@@ -134,24 +148,5 @@ h3 {
         opacity: 1;
       }
     }
-  }
-}
-
-.goback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 3px;
-  cursor: pointer;
-
-  svg {
-    path {
-      stroke: white !important;
-    }
-  }
-
-  .navbar__icon__text {
-    font-weight: 500;
-    color: white !important;
   }
 }

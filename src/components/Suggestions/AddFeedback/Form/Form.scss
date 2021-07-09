@@ -1,0 +1,70 @@
+@import "@/styles/import.scss";
+@import "@/styles/colors.scss";
+
+.feedback {
+  &_form {
+    &__header {
+      margin-top: 1.5rem;
+
+      &__title {
+        color: $dark_blue;
+        font-weight: bold;
+        font-size: 13px;
+
+        @include media(">=md") {
+          font-size: 14px;
+        }
+      }
+
+      &__subhead {
+        font-size: 13px !important;
+        color: $text_primary !important;
+
+        @include media(">=md") {
+          font-size: 14px !important;
+        }
+      }
+    }
+
+    &__input {
+      margin-top: 1.23rem;
+
+      .v-select__slot {
+        .mdi-chevron-down {
+          color: $blue !important;
+        }
+      }
+    }
+
+    &__buttons {
+      width: 100% !important;
+
+      @include media(">=md") {
+        justify-content: flex-end;
+        display: flex;
+        gap: 1rem;
+      }
+
+      .ui-button {
+        width: 100%;
+        margin: 0 0 1rem !important;
+
+        @include media(">=md") {
+          &:nth-of-type(1) {
+            order: 3;
+            width: 144px;
+          }
+          &:nth-of-type(2) {
+            order: 2;
+            width: 93px;
+          }
+          &:nth-of-type(3) {
+            order: 1;
+            width: 93px;
+            margin-right: auto !important;
+          }
+        }
+      }
+    }
+  }
+}

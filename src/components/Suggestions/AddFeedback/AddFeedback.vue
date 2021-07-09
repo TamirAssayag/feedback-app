@@ -1,6 +1,12 @@
 <template>
   <v-fab-transition appear>
-    <v-dialog v-model="isOpen" fullscreen transition="dialog-bottom-transition">
+    <v-dialog
+      v-model="isOpen"
+      fullscreen
+      persistent
+      transition="dialog-bottom-transition"
+      no-click-animation
+    >
       <div class="feedback">
         <Navbar
           :maxHeight="36"
@@ -41,7 +47,7 @@ export default {
 
   watch: {
     "$route.name"(name) {
-      this.isOpen = name === "sku-new";
+      this.isOpen = name === "edit_fb";
     },
   },
 

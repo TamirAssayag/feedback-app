@@ -2,7 +2,8 @@
   <div class="card roadmap__drawer">
     <header class="roadmap__drawer__card-header">
       <h3>Roadmap</h3>
-      <span class="view_link" @click="$router.push('/roadmap')">View</span>
+
+      <span class="view_link" @click="directToRoadmap">View</span>
     </header>
 
     <div class="roadmap__drawer__card__content">
@@ -31,6 +32,12 @@ export default {
   data: () => ({
     roadmaps: ["Planned", "In-Progress", "Live"],
   }),
+
+  methods: {
+    directToRoadmap() {
+      this.$router.push("/roadmap");
+    },
+  },
 
   computed: {},
 };

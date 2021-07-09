@@ -63,6 +63,9 @@ export default {
 
   ul {
     margin-left: 1rem;
+    @include media(">=md") {
+      margin-left: 32px;
+    }
   }
 
   .reply {

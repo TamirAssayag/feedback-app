@@ -6,7 +6,7 @@
         {{ newMode ? "Create New Feedback" : `Editing '${newFeedback.title}'` }}
       </h4>
     </header>
-    <v-form @submit.prevent="handleSaveForm" class="feedback_form">
+    <v-form @submit.prevent="handleSaveForm()" class="feedback_form">
       <section>
         <header class="feedback_form__header">
           <p class="feedback_form__header__title">Feedback Title</p>
@@ -19,12 +19,12 @@
             height="48px"
             dense
             filled
+            maxlength="55"
             background-color="input"
-            value="newFeedback.title"
-            v-model="newFeedback.title"
             :error-messages="titleErrors"
             @focus="$v.newFeedback.title.$reset()"
             @blur="$v.newFeedback.title.$touch()"
+            v-model="newFeedback.title"
           ></v-text-field>
         </div>
       </section>
@@ -104,6 +104,7 @@
             dense
             filled
             required
+            maxlength="250"
             background-color="input"
             v-model="newFeedback.description"
             :error-messages="descriptionErrors"
@@ -121,7 +122,6 @@
           :aria-label="newMode ? 'Add Feedback' : 'Save Changes'"
           >{{ newMode ? "Add Feedback" : "Save Changes" }}</UIButton
         >
-        <!-- @click="$emit('onSubmit')" -->
         <UIButton
           uistyle="cancel"
           title="Cancel"
@@ -144,11 +144,12 @@
 
 <script>
 import UIButton from "../../../Layout/UI/UIButton.vue";
-import cloneDeep from "lodash/cloneDeep";
 import FormValidations from "@/mixins/FormValidations";
 import { validationMixin } from "vuelidate";
 import { required } from "vuelidate/lib/validators";
 import { mapActions } from "vuex";
+import cloneDeep from "lodash/cloneDeep";
+import "./Form.scss";
 
 export default {
   components: { UIButton },
@@ -221,11 +222,11 @@ export default {
 
   computed: {
     newMode() {
-      return this.$route.name === "new_fb";
+      return this.checkRoute("new_fb");
     },
 
     editMode() {
-      return this.$route.name === "edit_fb";
+      return this.checkRoute("edit_fb");
     },
 
     iconByMode() {
@@ -243,11 +244,15 @@ export default {
     handleSaveForm() {
       this.$v.$touch();
       if (this.$v.$invalid) return;
-      if (this.newMode) this.addFeedback(this.newFeedback);
-      this.saveFeedbackById({
-        id: this.$route.params.id,
-        data: this.newFeedback,
-      });
+      if (this.newMode) {
+        this.addFeedback(this.newFeedback);
+      } else {
+        this.saveFeedbackById({
+          id: this.$route.params.id,
+          data: this.newFeedback,
+        });
+        console.log(this.newFeedback.length - 1);
+      }
       return this.$emit("onSubmit");
     },
   },

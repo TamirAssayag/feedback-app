@@ -1,7 +1,14 @@
 @import "@/styles/colors.scss";
+@import "@/styles/import.scss";
 
 .roadmap {
   &__drawer {
+    @include media(">=lg") {
+      &.card {
+        width: 255px;
+        min-height: 166px;
+      }
+    }
     &__card-header {
       display: flex;
       align-items: center;

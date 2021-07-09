@@ -8,6 +8,8 @@ import InlineSvg from "vue-inline-svg";
 import Vuelidate from "vuelidate";
 import PortalVue from "portal-vue";
 import VueScreen from "./plugins/vue-screen";
+import VClamp from "vue-clamp";
+import VueScrollTo from "vue-scrollto";
 
 // Mixins
 import getImageUrl from "./mixins/getImageUrl";
@@ -18,9 +20,11 @@ Vue.mixin(AppMixin);
 
 Vue.use(Vuelidate);
 Vue.use(PortalVue);
+Vue.use(VueScrollTo);
 
 Vue.component("Fragment", Fragment);
 Vue.component("InlineSvg", InlineSvg);
+Vue.component("VClamp", VClamp);
 
 Vue.config.productionTip = false;
 
