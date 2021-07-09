@@ -2,44 +2,37 @@
   <div class="filter card">
     <UIButton
       :elevation="0"
-      v-for="value in Object.keys(buttons)"
-      :key="value"
-      :color="value === selected ? 'primary' : 'secondary'"
-      :title="value | capitalize"
-      :aria-label="value | capitalize"
-      @click="selectCategory(value)"
+      v-for="category in filters"
+      :key="category"
+      :color="category === selected ? 'primary' : 'secondary'"
+      :title="category | capitalize"
+      :aria-label="category | capitalize"
+      @click="filter(category)"
     >
-      {{ value }}
+      {{ category }}
     </UIButton>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import UIButton from "../../Layout/UI/UIButton.vue";
 export default {
   components: { UIButton },
   data: () => ({
-    buttons: {
-      all: false,
-      ui: false,
-      ux: false,
-      enhancement: false,
-      bug: false,
-      feature: false,
-    },
-    selected: "all",
+    filters: ["all", "ui", "ux", "enhancement", "bug", "feature"],
   }),
+
+  computed: {
+    ...mapGetters({
+      selected: "feedbacks/getFilter",
+    }),
+  },
 
   methods: {
     ...mapActions({
       filter: "feedbacks/updateFilter",
     }),
-
-    selectCategory(value) {
-      this.selected = value;
-      this.filter(value);
-    },
   },
 };
 </script>
