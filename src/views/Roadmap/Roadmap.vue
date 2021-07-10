@@ -25,13 +25,17 @@
               {{ item.text }}
             </p>
           </div>
-          <div v-for="feed in feedbackByStatus(item.status)" :key="feed.id">
-            <FeedbackCard
-              :feed="feed"
-              :color="feed.status"
-              @onVote="upVoteFeedbackById(feed.id)"
-              @direct="directToFeedback(feed.id)"
-            />
+
+          <div class="roadmap__cards">
+            <template v-for="feed in feedbackByStatus(item.status)">
+              <FeedbackCard
+                :key="feed.id"
+                :feed="feed"
+                :color="feed.status"
+                @onVote="upVoteFeedbackById(feed.id)"
+                @direct="directToFeedback(feed.id)"
+              />
+            </template>
           </div>
         </v-tab-item>
       </v-tabs-items>
@@ -39,12 +43,8 @@
   </div>
 
   <div v-else class="roadmap__grid">
-    <div
-      class="roadmap__items"
-      v-for="(item, index) in tabItems"
-      :key="item.status"
-    >
-      <v-fade-transition appear group>
+    <template class="roadmap__item" v-for="(item, index) in tabItems">
+      <v-fade-transition appear group :key="item.status">
         <div class="roadmap__header" :key="index">
           <h5>{{ item.status }} ({{ displayStatusAmount(item.status) }})</h5>
           <p class="roadmap__header__subtitle">
@@ -60,7 +60,7 @@
           />
         </div>
       </v-fade-transition>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -114,36 +114,52 @@ export default {
 <style lang="scss">
 @import "@/styles/colors.scss";
 @import "@/styles/import";
-.roadmap__header {
-  margin-bottom: 1.5rem;
-
-  h5 {
-    color: $dark_blue;
-    font-size: 14px;
-  }
-
-  &__subtitle {
-    color: $text_primary;
-    font-size: 13px;
-
-    @include media(">=md") {
-      font-size: 14px;
-    }
-  }
-}
-
 .roadmap {
   transition: all 0.2s ease !important;
-  @include media(">=lg") {
-    height: 272px;
+
+  &__header {
+    margin-bottom: 1.5rem;
+
+    h5 {
+      color: $dark_blue;
+      font-size: 14px;
+    }
+
+    &__subtitle {
+      color: $text_primary;
+      font-size: 13px;
+    }
   }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
   &__grid {
     display: grid;
     place-content: center;
     grid-template-columns: repeat(3, 233px);
     gap: 10px;
+  }
 
-    @include media(">=lg") {
+  &__card {
+    margin: 1.5rem 0;
+  }
+
+  @include media(">=md") {
+    &__header {
+      &__subtitle {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @include media(">=lg") {
+    height: 272px;
+    &__grid {
+      gap: 1.875rem;
       grid-template-columns: repeat(3, 358px);
     }
   }

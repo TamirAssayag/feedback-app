@@ -8,9 +8,6 @@
     min-height: 708px;
     margin-top: 2.625rem;
 
-    @include media(">=md") {
-      width: 540px;
-    }
     &.card {
       margin-bottom: 0;
     }
@@ -19,12 +16,6 @@
       position: absolute;
       top: -1.5rem;
       height: 40px;
-
-      @include media(">=md") {
-        height: 56px;
-        top: -2rem;
-        left: 2.5rem;
-      }
     }
 
     &__header {
@@ -35,8 +26,22 @@
         color: $dark_blue;
         letter-spacing: -0.25px;
         font-size: 18px;
+      }
+    }
+  }
 
-        @include media(">=md") {
+  @include media(">=md") {
+    &_wrapper {
+      width: 540px;
+
+      svg {
+        height: 56px;
+        top: -2rem;
+        left: 2.5rem;
+      }
+
+      &__header {
+        h4 {
           font-size: 24px !important;
         }
       }

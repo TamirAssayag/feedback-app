@@ -1,10 +1,5 @@
 @import "@/styles/colors.scss";
 @import "@/styles/import.scss";
-.single-feedback {
-  @include media(">=md") {
-    margin-top: 2rem;
-  }
-}
 
 .ui-button {
   &__edit_feedback {
@@ -29,11 +24,6 @@
     font-size: 13px;
     margin: 0 !important;
     word-wrap: break-word;
-
-    @include media(">=md") {
-      font-size: 15px;
-      margin-left: 4.5rem !important;
-    }
   }
 }
 
@@ -50,17 +40,6 @@
     background-color: #647196;
     top: 0;
     left: 0;
-
-    @include media(">=md") {
-      height: 90%;
-      left: 1rem;
-    }
-  }
-
-  &__user {
-    @include media(">=md") {
-      margin-left: 1.5rem;
-    }
   }
 
   &__wrapper {
@@ -72,21 +51,45 @@
       padding: 1rem 0 !important;
       word-wrap: break-word;
 
-      @include media(">=md") {
-        font-size: 15px;
-        margin-left: 6rem !important;
-      }
-
       .replying_to {
         color: $purple;
         font-weight: bold;
       }
     }
   }
+}
 
-  &__reply__expansion {
-    @include media(">=md") {
+@include media(">=md") {
+  .single-feedback {
+    margin-top: 2rem;
+  }
+
+  .comment {
+    &__content {
+      font-size: 15px;
+      margin-left: 4.5rem !important;
+    }
+  }
+
+  .replies {
+    &::before {
+      height: 90%;
+      left: 1rem;
+    }
+
+    &__user {
+      margin-left: 1.5rem;
+    }
+
+    &__reply__expansion {
       margin-left: calc(96px - 72px);
+    }
+
+    &__wrapper {
+      &__content {
+        font-size: 15px;
+        margin-left: 6rem !important;
+      }
     }
   }
 }

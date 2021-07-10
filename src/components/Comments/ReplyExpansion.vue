@@ -78,10 +78,6 @@ export default {
     }
   }
 
-  @include media(">=md") {
-    margin-left: 4.5rem;
-  }
-
   .v-input {
     &--has-state {
       border: 1px solid transparent !important;
@@ -105,6 +101,10 @@ export default {
 
   .v-input--is-focused {
     border: 1px solid transparent !important;
+  }
+
+  @include media(">=md") {
+    margin-left: 4.5rem;
   }
 }
 </style>

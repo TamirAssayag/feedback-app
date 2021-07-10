@@ -2,8 +2,10 @@
   <div class="tablet__nav" v-if="!checkRoute('roadmap')">
     <div class="tablet__nav__logo">
       <div class="tablet__nav__logo__wrapper">
-        <h4>Frontend Mentor</h4>
-        <h5>Feedback Board</h5>
+        <router-link to="/">
+          <h4>Frontend Mentor</h4>
+          <h5>Feedback Board</h5>
+        </router-link>
       </div>
     </div>
     <FilterButtons />
@@ -27,6 +29,29 @@ export default {
   align-items: center;
   justify-content: space-between;
 
+  &__logo {
+    display: flex;
+    min-height: 178px;
+    width: 223px;
+    border-radius: 10px;
+    background-image: url("./../../../assets/suggestions/tablet/background-header.png");
+    padding: 1.5rem;
+
+    &__wrapper {
+      h4 {
+        font-size: 20px;
+      }
+
+      h5 {
+        font-size: 15px;
+        font-weight: normal;
+      }
+
+      color: white;
+      margin-top: auto;
+    }
+  }
+
   @include media(">=md") {
     width: 730px;
     margin: 1.5rem auto 0;
@@ -42,34 +67,11 @@ export default {
     .card {
       margin: 0rem !important;
     }
-  }
 
-  &__logo {
-    display: flex;
-    min-height: 178px;
-    width: 223px;
-    border-radius: 10px;
-    background-image: url("./../../../assets/suggestions/tablet/background-header.png");
-    padding: 1.5rem;
-
-    @include media(">=lg") {
+    &__logo {
       width: 255px;
       min-height: 137px;
       background-image: url("./../../../assets/suggestions/desktop/background-header.png");
-    }
-
-    &__wrapper {
-      h4 {
-        font-size: 20px;
-      }
-
-      h5 {
-        font-size: 15px;
-        font-weight: normal;
-      }
-
-      color: white;
-      margin-top: auto;
     }
   }
 }

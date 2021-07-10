@@ -1,5 +1,5 @@
 <template>
-  <div :class="`fb__card sg__${index}`">
+  <div :class="`fb__card sg__card`">
     <div :class="`tab_color ${color}`" v-if="checkRoute('roadmap')"></div>
 
     <div class="suggestions" @click.stop="$emit('direct')">
@@ -122,5 +122,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

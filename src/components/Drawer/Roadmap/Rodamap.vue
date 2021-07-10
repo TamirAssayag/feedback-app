@@ -38,8 +38,6 @@ export default {
       this.$router.push("/roadmap");
     },
   },
-
-  computed: {},
 };
 </script>
 

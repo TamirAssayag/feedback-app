@@ -2,16 +2,6 @@
 @import "@/styles/import.scss";
 
 .extension {
-  @include media(">=md") {
-    margin: auto;
-  }
-  @include media(">=lg") {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   &_bar {
     background-color: #373f68;
     height: 56px;
@@ -24,7 +14,14 @@
       margin-left: auto !important;
     }
 
-    @include media(">=md") {
+    .ui-button__feedback {
+      margin: 0;
+    }
+  }
+
+  @include media(">=md") {
+    margin: auto;
+    &_bar {
       width: 720px;
       height: 72px;
       margin: auto;
@@ -73,19 +70,24 @@
         .ui-button__feedback {
           margin-left: auto !important;
         }
-        @include media(">=lg") {
-          width: 1110px;
-          margin: 4.5rem 0 3.5rem;
-        }
       }
     }
+  }
 
-    @include media(">=lg") {
+  @include media(">=lg") {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_bar {
       width: 825px;
-    }
-
-    .ui-button__feedback {
       margin: 0;
+
+      &__roadmap {
+        width: 1138px;
+        margin: 4.5rem 0 3.5rem;
+      }
     }
   }
 }

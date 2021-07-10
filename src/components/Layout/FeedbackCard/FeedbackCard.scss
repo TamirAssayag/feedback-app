@@ -3,10 +3,37 @@
 
 .suggestions {
   padding: 1.5rem;
-
   @include card;
 
-  @include media(">=md") {
+  &__btn {
+    &:nth-of-type(1) {
+      width: 69px;
+      height: 32px !important;
+    }
+  }
+
+  &__wrapper {
+    &__comments {
+      margin-left: auto;
+      align-self: center;
+
+      .v-btn__content {
+        font-weight: bold;
+        font-size: 16px !important;
+      }
+    }
+
+    &__upvote {
+      margin-right: 2.5rem;
+    }
+  }
+  .ui-button {
+    margin: 0;
+  }
+}
+
+@include media(">=md") {
+  .suggestions {
     min-height: 151px;
 
     &__title {
@@ -22,15 +49,8 @@
       width: unset;
       margin: 0 0 12px;
     }
-  }
 
-  &__btn {
-    &:nth-of-type(1) {
-      width: 69px;
-      height: 32px !important;
-    }
-
-    @include media(">=md") {
+    &__btn {
       &.ui-button__primary {
         width: 40px !important;
         height: 53px !important;
@@ -44,30 +64,9 @@
         }
       }
     }
-  }
-
-  &__wrapper {
-    @include media(">=md") {
+    &__wrapper {
       display: flex;
     }
-
-    &__comments {
-      margin-left: auto;
-      align-self: center;
-
-      .v-btn__content {
-        font-weight: bold;
-        font-size: 16px !important;
-      }
-    }
-
-    &__upvote {
-      margin-right: 2.5rem;
-    }
-  }
-
-  .ui-button {
-    margin: 0;
   }
 }
 

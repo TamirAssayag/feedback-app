@@ -9,6 +9,11 @@ body {
   font-family: "Jost", sans-serif;
 }
 
+a {
+  color: white !important;
+  text-decoration: none;
+}
+
 .modal-open {
   overflow-y: hidden;
   overflow-x: hidden;
@@ -41,7 +46,6 @@ body {
   width: 100%;
   background-color: white;
   border-radius: 10px;
-  margin: 1.5rem 0;
   overflow: hidden;
   transition: transform 0.15s ease-in-out;
   cursor: pointer;
@@ -57,24 +61,20 @@ body {
     width: 100%;
   }
 
-  &:first-child {
-    margin: 0 0 1.5rem;
-  }
-
   .tab_color,
   .roadmap__status__indicator {
     height: 6px;
 
     &.planned {
-      background-color: #f49f85;
+      background-color: $planned;
     }
 
     &.in-progress {
-      background-color: $purple;
+      background-color: $in-progress;
     }
 
     &.live {
-      background-color: #62bcfa;
+      background-color: $live;
     }
 
     .status_elipse {

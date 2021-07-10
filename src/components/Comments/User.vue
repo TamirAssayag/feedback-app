@@ -42,19 +42,12 @@ export default {
     font-weight: bold;
     color: $dark_blue;
     letter-spacing: -0.18px;
-    @include media(">=md") {
-      font-size: 14px;
-    }
   }
 
   &__username {
     font-size: 13px;
     color: $text_primary;
     letter-spacing: -0.18px;
-
-    @include media(">=md") {
-      font-size: 14px;
-    }
   }
 
   .v-image {
@@ -63,9 +56,6 @@ export default {
 
   ul {
     margin-left: 1rem;
-    @include media(">=md") {
-      margin-left: 32px;
-    }
   }
 
   .reply {
@@ -74,6 +64,17 @@ export default {
     font-weight: 600;
     margin-left: auto;
     cursor: pointer;
+  }
+
+  @include media(">=md") {
+    &__name,
+    &__username {
+      font-size: 14px;
+    }
+  }
+
+  ul {
+    margin-left: 2rem;
   }
 }
 </style>

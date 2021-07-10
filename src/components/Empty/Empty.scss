@@ -10,11 +10,6 @@
     border-radius: 10px;
     background-color: white;
     height: 460px;
-
-    @include media(">=lg") {
-      height: 600px;
-      margin-top: 1.5rem;
-    }
   }
 
   svg {
@@ -31,12 +26,20 @@
     padding: 14px 0;
     font-size: 13px;
     padding: 0.8rem 1rem 1.5rem;
+  }
 
-    @include media(">=md") {
+  @include media(">=md") {
+    width: 100%;
+    &__text {
       width: 60% !important;
     }
+  }
 
-    @include media(">=lg") {
+  @include media(">=lg") {
+    &__content {
+      height: 600px;
+    }
+    &__text {
       font-size: 1rem;
       width: 825px;
     }
