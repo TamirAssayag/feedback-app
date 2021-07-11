@@ -31,6 +31,12 @@
       }
     }
 
+    .v-select {
+      &__selections {
+        min-width: unset !important;
+      }
+    }
+
     .v-input__control {
       max-width: 115px !important;
     }
