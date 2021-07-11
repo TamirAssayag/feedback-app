@@ -64,6 +64,14 @@
     margin-top: 2rem;
   }
 
+  .ui-button {
+    &__edit_feedback {
+      width: 142px;
+      height: 44px;
+      font-size: 14px !important;
+    }
+  }
+
   .comment {
     &__content {
       font-size: 15px;

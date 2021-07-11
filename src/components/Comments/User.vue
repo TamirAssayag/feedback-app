@@ -31,8 +31,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/colors.scss";
-@import "@/styles/import";
+@import "@/styles/import.scss";
 
 .user {
   display: flex;

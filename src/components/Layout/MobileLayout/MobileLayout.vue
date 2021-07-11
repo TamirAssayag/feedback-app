@@ -108,7 +108,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/colors.scss";
 @import "@/styles/import.scss";
 .v-btn {
   &::before {

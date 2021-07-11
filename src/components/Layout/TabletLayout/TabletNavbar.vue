@@ -22,7 +22,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/colors.scss";
 @import "@/styles/import.scss";
 .tablet__nav {
   display: flex;

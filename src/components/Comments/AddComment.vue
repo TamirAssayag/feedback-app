@@ -17,7 +17,11 @@
     ></v-textarea>
 
     <div class="bottom_add_comment">
-      <UIButton class="post_comment mt-4" :uistyle="'feedback'" @click="submit">
+      <UIButton
+        class="post_comment mt-4"
+        :uistyle="'post__comment'"
+        @click="submit"
+      >
         Post Comment
       </UIButton>
     </div>

@@ -1,59 +1,61 @@
 <template>
   <section>
     <router-view />
-    <div v-if="feedback" class="container single-feedback">
-      <Navbar :maxHeight="36" notSticky @onBack="goBack">
-        <template v-slot:action>
-          <UIButton
-            class="ui-button__edit_feedback"
-            aria-label="Edit Feedback"
-            title="Edit Feedback"
-            @click="editFeedback"
+    <v-fade-transition mode="out-in" appear>
+      <div v-if="feedback" class="container single-feedback">
+        <Navbar :maxHeight="36" notSticky @onBack="goBack">
+          <template v-slot:action>
+            <UIButton
+              class="ui-button__edit_feedback"
+              aria-label="Edit Feedback"
+              title="Edit Feedback"
+              @click="editFeedback"
+            >
+              Edit Feedback
+            </UIButton>
+          </template>
+        </Navbar>
+
+        <v-fade-transition appear>
+          <FeedbackCard
+            class="mt-6"
+            @onVote="upVoteFeedbackById(feedback.id)"
+            :feed="feedback"
+          />
+        </v-fade-transition>
+
+        <section class="card comments">
+          <header class="comments__header">
+            <h3>{{ feedback.totalComments }} Comments</h3>
+          </header>
+
+          <v-expand-transition
+            appear
+            v-for="(comment, i) in comments"
+            :key="comment.id + i"
           >
-            Edit Feedback
-          </UIButton>
-        </template>
-      </Navbar>
+            <div class="comments__wrapper">
+              <Comment :data="comment" :index="i" />
 
-      <v-fade-transition appear>
-        <FeedbackCard
-          class="mt-6"
-          @onVote="upVoteFeedbackById(feedback.id)"
-          :feed="feedback"
-        />
-      </v-fade-transition>
-
-      <section class="card comments">
-        <header class="comments__header">
-          <h3>{{ feedback.totalComments }} Comments</h3>
-        </header>
-
-        <v-expand-transition
-          appear
-          v-for="(comment, i) in comments"
-          :key="comment.id + i"
-        >
-          <div class="comments__wrapper">
-            <Comment :data="comment" :index="i" />
-
-            <div class="replies" v-if="comment.replies">
-              <v-expand-transition
-                v-for="(reply, index) in comment.replies"
-                :key="reply.replyingTo + index"
-              >
-                <Replies
-                  :data="reply"
-                  :commentId="comment.id"
-                  @onDelete="removeReply(comment.id, index)"
-                />
-              </v-expand-transition>
+              <div class="replies" v-if="comment.replies">
+                <v-expand-transition
+                  v-for="(reply, index) in comment.replies"
+                  :key="reply.replyingTo + index"
+                >
+                  <Replies
+                    :data="reply"
+                    :commentId="comment.id"
+                    @onDelete="removeReply(comment.id, index)"
+                  />
+                </v-expand-transition>
+              </div>
+              <v-divider class="mb-5" v-if="i !== comments.length - 1" />
             </div>
-            <v-divider class="mb-5" v-if="i !== comments.length - 1" />
-          </div>
-        </v-expand-transition>
-      </section>
-      <AddComment @onSubmit="handleSubmit" />
-    </div>
+          </v-expand-transition>
+        </section>
+        <AddComment @onSubmit="handleSubmit" />
+      </div>
+    </v-fade-transition>
   </section>
 </template>
 

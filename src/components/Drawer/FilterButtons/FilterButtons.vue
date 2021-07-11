@@ -5,6 +5,7 @@
       v-for="category in filters"
       :key="category"
       :color="category === selected ? 'primary' : 'secondary'"
+      :uistyle="''"
       :title="category | capitalize"
       :aria-label="category | capitalize"
       @click="filter(category)"

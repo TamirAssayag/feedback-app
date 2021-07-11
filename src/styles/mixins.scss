@@ -4,6 +4,11 @@
   &__primary {
     color: white !important;
     background-color: $blue !important;
+
+    &:hover,
+    &:active {
+      background-color: $blue-hover !important;
+    }
   }
 
   &__secondary {
@@ -54,5 +59,18 @@
     align-items: center !important;
     justify-content: space-around;
     width: 62px;
+  }
+}
+
+@mixin buttonStyle($bg-color, $color, $f-size, $f-weight, $bg-hover) {
+  background-color: $bg-color;
+  color: $color;
+  font-size: $f-size;
+  font-weight: $f-weight;
+  transform: none !important;
+
+  &:hover,
+  &:active {
+    background-color: $bg-hover !important;
   }
 }
