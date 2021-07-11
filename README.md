@@ -15,15 +15,15 @@ This is a solution to the [Product feedback app challenge on Frontend Mentor](ht
 
 Users should be able to:
 
-✔ - View the optimal layout for the app depending on their device's screen size
-✔ - See hover states for all interactive elements on the page
-✔ - Create, read, update, and delete product feedback requests
-✔ - Receive form validations when trying to create/edit feedback requests
-✔ - Sort suggestions by most/least upvotes and most/least comments
-✔ - Filter suggestions by category
-✔ - Add comments and replies to a product feedback request
-✔ - Upvote product feedback requests
-✔ - **Bonus**: Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
+- ✔️ View the optimal layout for the app depending on their device's screen size
+- ✔️ See hover states for all interactive elements on the page
+- ✔️ Create, read, update, and delete product feedback requests
+- ✔️ Receive form validations when trying to create/edit feedback requests
+- ✔️ Sort suggestions by most/least upvotes and most/least comments
+- ✔️ Filter suggestions by category
+- ✔️Add comments and replies to a product feedback request
+- ✔️ Upvote product feedback requests
+- ✔️ **Bonus**: Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
 
 ### Screenshot
 
@@ -31,8 +31,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Frontend Mentor] (https://www.frontendmentor.io/solutions/responsive-product-feedback-app-using-vuejs-vuetify-vuex-and-scss-7uOf7-Wrs)
-- Live Site URL: [Nelitfy] (https://hopeful-murdock-83580e.netlify.app/)
+- Solution URL: [Frontend Mentor](https://www.frontendmentor.io/solutions/responsive-product-feedback-app-using-vuejs-vuetify-vuex-and-scss-7uOf7-Wrs)
+- Live Site URL: [Nelitfy](https://hopeful-murdock-83580e.netlify.app/)
 
 ## My process
 
