@@ -57,7 +57,7 @@
     <template v-slot:extension>
       <div class="extension_bar" v-if="!roadmapView">
         <div class="sort_by">
-          <span class="text_extension"> Sort By: </span>
+          <span class="text_extension"> Sort By : </span>
           <SortBy />
         </div>
         <UIButton

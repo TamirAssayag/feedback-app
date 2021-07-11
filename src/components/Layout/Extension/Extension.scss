@@ -9,6 +9,10 @@
     padding: 0 1.5rem;
     color: white !important;
 
+    .text_extension {
+      color: #f2f4fe;
+    }
+
     .ui-button__feedback {
       margin-left: auto !important;
     }
@@ -29,6 +33,7 @@
 
       .text_extension {
         margin-left: 2.3rem;
+        font-size: 14px;
       }
 
       &__suggestions {

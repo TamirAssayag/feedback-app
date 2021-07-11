@@ -124,6 +124,11 @@ p {
       overflow: unset !important;
       font-size: 13px;
       color: $dark_blue !important;
+
+      @include media(">=md") {
+        font-size: 15px;
+        margin: 0 !important;
+      }
     }
   }
 }

@@ -5,7 +5,7 @@
       <h3>{{ displaySuggestionsStatus() }} Suggestions</h3>
     </div>
     <div class="sort_by">
-      <span class="text_extension"> Sort By: </span>
+      <span class="text_extension"> Sort By : </span>
       <SortBy />
     </div>
     <UIButton

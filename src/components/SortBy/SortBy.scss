@@ -1,3 +1,4 @@
+@import "@/styles/import.scss";
 .sort_by {
   display: flex;
   align-items: center;
@@ -20,13 +21,17 @@
 
   &__select {
     max-width: 115px;
-    padding-left: 8px !important;
+    padding-left: 5px !important;
 
     &.v-select {
       &.v-input--dense {
         .v-select__selection--comma {
-          color: white !important;
-          font-weight: 500;
+          color: #f2f4fe !important;
+          font-weight: bold;
+
+          @include media(">=md") {
+            font-size: 14px;
+          }
         }
       }
     }
@@ -52,6 +57,7 @@
         color: white;
         font-size: 16px;
         margin-top: 0.1rem;
+        -webkit-text-stroke-width: 0.5px;
       }
     }
   }
