@@ -8,9 +8,8 @@ This is a solution to the [Product feedback app challenge on Frontend Mentor](ht
 - [Screenshot](#screenshot)
 - [Links](#links)
 - [My process](#my-process)
-  - [Built with](#built-with)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
+- [Built with](#built-with)
+
 
 ### The challenge
 
@@ -32,8 +31,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Nelitfy(https://hopeful-murdock-83580e.netlify.app/)
+- Solution URL: [Frontend Mentor] (https://www.frontendmentor.io/solutions/responsive-product-feedback-app-using-vuejs-vuetify-vuex-and-scss-7uOf7-Wrs)
+- Live Site URL: [Nelitfy] (https://hopeful-murdock-83580e.netlify.app/)
 
 ## My process
 
