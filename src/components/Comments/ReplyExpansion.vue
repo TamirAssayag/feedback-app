@@ -7,6 +7,7 @@
           required
           color="input"
           no-resize
+          maxlength="250"
           v-model="content"
           :error-messages="replyErrors"
           :placeholder="`Replying to @${user.username}`"

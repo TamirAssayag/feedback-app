@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import UIButton from "../../../components/Layout/UI/UIButton.vue";
+import UIButton from "@/components/Layout/UI/UIButton.vue";
 import "./RoadmapCard.scss";
 export default {
   components: { UIButton },
