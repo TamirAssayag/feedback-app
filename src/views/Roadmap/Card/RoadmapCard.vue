@@ -11,7 +11,7 @@
 
         <div class="roadmap__wrapper">
           <div class="roadmap__content">
-            <span class="roadmap__title">
+            <span class="roadmap__title" :title="feed.title">
               <v-clamp autoresize :max-lines="1" v-if="checkRoute('roadmap')">
                 {{ feed.title }}
               </v-clamp>

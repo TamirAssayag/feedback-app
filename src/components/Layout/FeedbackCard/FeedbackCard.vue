@@ -27,11 +27,7 @@
         </div>
 
         <div class="suggestions__content">
-          <span
-            class="suggestions__title"
-            :aria-label="feed.title"
-            :title="feed.title"
-          >
+          <span class="suggestions__title" :title="feed.title">
             <v-clamp autoresize :max-lines="1" v-if="checkRoute('Suggestions')">
               {{ feed.title }}
             </v-clamp>
