@@ -7,7 +7,9 @@
     <footer>
       <p class="attribution">
         Challenge by
-        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        <a
+          href="https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6"
+          target="_blank"
           >Frontend Mentor</a
         >. Coded by <a href="#">Tamir Assayag</a>.
       </p>
