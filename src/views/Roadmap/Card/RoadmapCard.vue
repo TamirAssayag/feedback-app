@@ -29,7 +29,13 @@
               </p>
             </div>
 
-            <UIButton color="secondary" uistyle="chip" :elevation="0">
+            <UIButton
+              color="secondary"
+              :aria-label="feed.category | capitalize"
+              :title="feed.category | capitalize"
+              uistyle="chip"
+              :elevation="0"
+            >
               {{ feed.category }}
             </UIButton>
           </div>
@@ -41,6 +47,8 @@
             :elevation="0"
             class="roadmap__btn"
             @clickStop="$emit('onVote')"
+            :title="feed.hasUserUpVoted ? 'Downvote' : 'Upvote'"
+            :aria-label="feed.hasUserUpVoted ? 'Downvote' : 'Upvote'"
           >
             <inlineSvg
               :src="getImageUrl('shared/icon-arrow-up.svg')"
@@ -53,6 +61,12 @@
             color="transparent"
             :elevation="0"
             class="suggestions__btn"
+            :aria-label="`${feed.comments.length} Comments`"
+            :title="`${
+              feed.comments.length
+                ? feed.comments.length + ' Comments'
+                : 'No Comments'
+            }`"
           >
             <inlineSvg
               :src="getImageUrl('shared/icon-comments.svg')"

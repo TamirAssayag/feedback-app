@@ -18,6 +18,8 @@
         plain
         v-model="isMenuOpen"
         @click="$emit('menuToggle', !isMenuOpen)"
+        :title="isMenuOpen ? 'Close Menu' : 'Open Menu'"
+        :aria-label="isMenuOpen ? 'Close Menu' : 'Open Menu'"
       >
         <inlineSvg :src="getImageUrl(getMenuIcon)"></inlineSvg>
       </v-btn>
@@ -27,6 +29,8 @@
           uistyle="feedback"
           :elevation="0"
           @click="$router.push('/add')"
+          aria-label="Add Feedback"
+          title="Add Feedback"
         >
           + Add Feedback
         </UIButton>
@@ -56,7 +60,12 @@
           <span class="text_extension"> Sort By: </span>
           <SortBy />
         </div>
-        <UIButton uistyle="feedback" @click="$router.push('/add')">
+        <UIButton
+          uistyle="feedback"
+          aria-label="Add Feedback"
+          title="Add Feedback"
+          @click="$router.push('/add')"
+        >
           + Add Feedback
         </UIButton>
       </div>

@@ -7,6 +7,7 @@
       content-class="user_img"
       :alt="`${username}`"
       :title="`${username}`"
+      :aria-label="`${username}`"
     />
     <ul>
       <li class="user__name">

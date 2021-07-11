@@ -8,7 +8,12 @@
       <span class="text_extension"> Sort By: </span>
       <SortBy />
     </div>
-    <UIButton uistyle="feedback" @click="$router.push('/add')">
+    <UIButton
+      uistyle="feedback"
+      aria-label="Add Feedback"
+      title="Add Feedback"
+      @click="$router.push('/add')"
+    >
       + Add Feedback
     </UIButton>
   </div>

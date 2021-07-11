@@ -16,6 +16,8 @@
             :elevation="0"
             class="suggestions__btn"
             @clickStop="$emit('onVote')"
+            :title="feed.hasUserUpVoted ? 'Downvote' : 'Upvote'"
+            :aria-label="feed.hasUserUpVoted ? 'Downvote' : 'Upvote'"
           >
             <inlineSvg
               :src="getImageUrl('shared/icon-arrow-up.svg')"
@@ -88,6 +90,8 @@
           :elevation="0"
           class="suggestions__btn upvote"
           @click="$emit('onVote')"
+          :title="feed.hasUserUpVoted ? 'Downvote' : 'Upvote'"
+          :aria-label="feed.hasUserUpVoted ? 'Downvote' : 'Upvote'"
         >
           <inlineSvg :src="getImageUrl('shared/icon-arrow-up.svg')"></inlineSvg>
           {{ feed.upvotes }}
@@ -98,6 +102,12 @@
           color="transparent"
           :elevation="0"
           class="suggestions__btn"
+          :aria-label="`${feed.comments.length} Comments`"
+          :title="`${
+            feed.comments.length
+              ? feed.comments.length + ' Comments'
+              : 'No Comments'
+          }`"
         >
           <inlineSvg :src="getImageUrl('shared/icon-comments.svg')"></inlineSvg>
           {{ feed.totalComments }}

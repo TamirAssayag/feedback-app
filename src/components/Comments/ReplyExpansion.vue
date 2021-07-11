@@ -21,6 +21,8 @@
           color="transparent"
           plain
           type="submit"
+          aria-label="Submit Reply"
+          title="Submit Reply"
         >
           <v-icon class="send_reply">mdi-send-circle-outline</v-icon>
         </v-btn>
