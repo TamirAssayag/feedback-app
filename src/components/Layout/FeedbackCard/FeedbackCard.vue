@@ -27,14 +27,14 @@
         </div>
 
         <div class="suggestions__content">
-          <span class="suggestions__title" :title="feed.title">
+          <div class="suggestions__title" :title="feed.title">
             <v-clamp autoresize :max-lines="1" v-if="checkRoute('Suggestions')">
               {{ feed.title }}
             </v-clamp>
             <p v-else>
               {{ feed.title }}
             </p>
-          </span>
+          </div>
 
           <div class="suggestions__description">
             <v-clamp autoresize :max-lines="2" v-if="checkRoute('Suggestions')">
@@ -71,6 +71,7 @@
                 ? feed.comments.length + ' Comments'
                 : 'No Comments'
             }`"
+            @click="$emit('direct')"
           >
             <inlineSvg
               :src="getImageUrl('shared/icon-comments.svg')"

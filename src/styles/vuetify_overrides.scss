@@ -158,6 +158,7 @@ p {
 .v-application {
   &.error--text {
     color: $red !important;
+    caret-color: $red !important;
   }
 }
 
@@ -226,6 +227,7 @@ p {
 }
 
 .v-text-field__slot {
+  caret-color: $dark_blue !important;
   label,
   ::placeholder {
     font-size: 13px;

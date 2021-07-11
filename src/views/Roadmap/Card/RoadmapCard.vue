@@ -67,6 +67,7 @@
                 ? feed.comments.length + ' Comments'
                 : 'No Comments'
             }`"
+            @click="$emit('direct')"
           >
             <inlineSvg
               :src="getImageUrl('shared/icon-comments.svg')"
