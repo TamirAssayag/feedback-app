@@ -4,6 +4,14 @@
     <TabletLayout v-if="$screen.md" />
     <Drawer v-model="isMenuOpen" />
     <router-view />
+    <footer>
+      <p class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Tamir Assayag</a>.
+      </p>
+    </footer>
   </v-app>
 </template>
 
@@ -49,5 +57,24 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/import.scss";
+@import "@/styles/colors.scss";
+
+footer {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+  opacity: 0.3;
+  margin: auto auto 0;
+
+  .attribution {
+    color: black !important;
+    font-size: 13px;
+
+    a {
+      color: $text_primary !important;
+    }
+  }
+}
 </style>
