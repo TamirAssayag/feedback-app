@@ -7,7 +7,6 @@
       dense
       filled
       hide-details
-      attach
       v-model="selected"
       @input="
         () => {
@@ -15,6 +14,7 @@
         }
       "
       append-icon="mdi-chevron-down"
+      attach
       :menu-props="{
         contentClass: 'sort_by__transparent',
         transition: 'scroll-y-transition',

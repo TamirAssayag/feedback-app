@@ -10,7 +10,7 @@
           maxlength="250"
           v-model="content"
           :error-messages="replyErrors"
-          :placeholder="`Replying to @${user.username}`"
+          :placeholder="`Replying to @${username}`"
           @focus="$v.content.$reset()"
           @blur="$v.content.$touch()"
         ></v-textarea>
